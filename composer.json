@@ -40,7 +40,7 @@
         "ramsey/uuid": "^4.7",
         "symfony/console": "^6.0",
         "tencentcloud/tencentcloud-sdk-php": "^3.0",
-        "MshkQ/json-api": "v1.0.0"
+        "MshkQ/json-api": "^1.0.0"
     },
  
     "autoload": {
