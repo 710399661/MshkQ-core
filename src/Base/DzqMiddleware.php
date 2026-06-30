@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Base;
+namespace MshkQ\Base;
 
 
 use Closure;
-use Discuz\Common\Utils;
+use MshkQ\Common\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Container\Container;

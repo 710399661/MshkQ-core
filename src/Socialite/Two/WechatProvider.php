@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Socialite\Two;
+namespace MshkQ\Socialite\Two;
 
-use Discuz\Contracts\Socialite\Provider as ProviderInterface;
-use Discuz\Socialite\Exception\SocialiteException;
+use MshkQ\Contracts\Socialite\Provider as ProviderInterface;
+use MshkQ\Socialite\Exception\SocialiteException;
 
 class WechatProvider extends AbstractProvider implements ProviderInterface
 {

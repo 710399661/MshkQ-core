@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http\Middleware;
+namespace MshkQ\Http\Middleware;
 
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Discuz\Http\DiscuzResponseFactory;
+use MshkQ\Http\DiscuzResponseFactory;
 
 class OptionsRequest implements MiddlewareInterface
 {

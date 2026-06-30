@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Base;
+namespace MshkQ\Base;
 
 use Exception;
 

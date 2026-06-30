@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications\Services;
+namespace MshkQ\Notifications\Services;
 
-use Discuz\Notifications\Messages\SimpleMessage;
+use MshkQ\Notifications\Messages\SimpleMessage;
 use Illuminate\Support\Collection;
 
 abstract class AbstractDriver implements NotificationInterface

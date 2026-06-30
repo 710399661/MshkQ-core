@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Discuz\Notifications\Services;
+namespace MshkQ\Notifications\Services;
 
 
-use Discuz\Notifications\Messages\SimpleMessage;
+use MshkQ\Notifications\Messages\SimpleMessage;
 
 interface NotificationInterface
 {

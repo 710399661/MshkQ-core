@@ -16,16 +16,16 @@
  * limitations under the License.
  */
 
-namespace Discuz\Socialite;
+namespace MshkQ\Socialite;
 
-use Discuz\Contracts\Setting\SettingsRepository;
-use Discuz\Contracts\Socialite\Factory;
-use Discuz\Http\UrlGenerator;
-use Discuz\Socialite\Two\GithubProvider;
-use Discuz\Socialite\Two\QQProvider;
-use Discuz\Socialite\Two\WechatQyProvider;
-use Discuz\Socialite\Two\WechatProvider;
-use Discuz\Socialite\Two\WechatWebProvider;
+use MshkQ\Contracts\Setting\SettingsRepository;
+use MshkQ\Contracts\Socialite\Factory;
+use MshkQ\Http\UrlGenerator;
+use MshkQ\Socialite\Two\GithubProvider;
+use MshkQ\Socialite\Two\QQProvider;
+use MshkQ\Socialite\Two\WechatQyProvider;
+use MshkQ\Socialite\Two\WechatProvider;
+use MshkQ\Socialite\Two\WechatWebProvider;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Manager;
 use Illuminate\Support\Str;
@@ -154,7 +154,7 @@ class SocialiteManage extends Manager implements Factory
      *
      * @param  string  $provider
      * @param  array  $config
-     * @return \Discuz\Socialite\Two\AbstractProvider
+     * @return \MshkQ\Socialite\Two\AbstractProvider
      */
     public function buildProvider($provider, $config)
     {

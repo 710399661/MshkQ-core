@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Contracts\Qcloud;
+namespace MshkQ\Contracts\Qcloud;
 
 interface Factory
 {

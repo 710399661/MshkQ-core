@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Socialite\Exception;
+namespace MshkQ\Socialite\Exception;
 
 use InvalidArgumentException;
 

@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Foundation\Support;
+namespace MshkQ\Foundation\Support;
 
-use Discuz\Foundation\Application;
+use MshkQ\Foundation\Application;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 

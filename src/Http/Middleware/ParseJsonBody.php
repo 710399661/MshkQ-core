@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http\Middleware;
+namespace MshkQ\Http\Middleware;
 
 use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;

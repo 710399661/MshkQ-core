@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Events;
+namespace MshkQ\Api\Events;
 
 use App\Models\User;
 use DateTime;
-use Discuz\Api\Serializer\AbstractSerializer;
+use MshkQ\Api\Serializer\AbstractSerializer;
 
 /**
  * Prepare API attributes.

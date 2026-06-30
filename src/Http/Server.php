@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http;
+namespace MshkQ\Http;
 
-use Discuz\Common\Utils;
-use Discuz\Foundation\Application;
-use Discuz\Foundation\SiteApp;
-use Discuz\Http\Middleware\RequestHandler;
+use MshkQ\Common\Utils;
+use MshkQ\Foundation\Application;
+use MshkQ\Foundation\SiteApp;
+use MshkQ\Http\Middleware\RequestHandler;
 use Illuminate\Database\QueryException;
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\ServerRequest;

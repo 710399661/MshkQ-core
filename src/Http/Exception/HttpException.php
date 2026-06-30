@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http\Exception;
+namespace MshkQ\Http\Exception;
 
 class HttpException extends \RuntimeException
 {

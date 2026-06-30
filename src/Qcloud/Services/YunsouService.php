@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Qcloud\Services;
+namespace MshkQ\Qcloud\Services;
 
 use TencentCloud\Yunsou\V20180504\Models\DataManipulationRequest;
 use TencentCloud\Yunsou\V20180504\Models\DataSearchRequest;

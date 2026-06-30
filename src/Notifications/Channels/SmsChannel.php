@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications\Channels;
+namespace MshkQ\Notifications\Channels;
 
 use App\Models\NotificationTpl;
 use App\SmsMessages\SendNoticeMessage;
-use Discuz\Contracts\Setting\SettingsRepository;
-use Discuz\Qcloud\QcloudTrait;
+use MshkQ\Contracts\Setting\SettingsRepository;
+use MshkQ\Qcloud\QcloudTrait;
 use Exception;
 use Illuminate\Notifications\Notification;
 
@@ -26,7 +26,7 @@ use Illuminate\Notifications\Notification;
  * 短信通知 - 频道
  * Class SmsChannel
  *
- * @package Discuz\Notifications\Channels
+ * @package MshkQ\Notifications\Channels
  */
 class SmsChannel
 {

@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-namespace Discuz\SpecialChar;
+namespace MshkQ\SpecialChar;
 
 /**
  * Interface SpecialCharServer
  * 过滤内容 防止Xss注入
  *
- * @package Discuz\SpecialChar
+ * @package MshkQ\SpecialChar
  */
 interface SpecialCharServer
 {

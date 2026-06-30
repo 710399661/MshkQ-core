@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Foundation;
+namespace MshkQ\Foundation;
 
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler as ContractsExceptionHandler;

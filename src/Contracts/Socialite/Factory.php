@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Contracts\Socialite;
+namespace MshkQ\Contracts\Socialite;
 
 interface Factory
 {

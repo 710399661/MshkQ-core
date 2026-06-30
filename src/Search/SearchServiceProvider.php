@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Search;
+namespace MshkQ\Search;
 
-use Discuz\Contracts\Search\Searcher;
-use Discuz\Foundation\AbstractServiceProvider;
+use MshkQ\Contracts\Search\Searcher;
+use MshkQ\Foundation\AbstractServiceProvider;
 
 class SearchServiceProvider extends AbstractServiceProvider
 {

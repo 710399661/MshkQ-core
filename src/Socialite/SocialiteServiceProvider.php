@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Socialite;
+namespace MshkQ\Socialite;
 
-use Discuz\Contracts\Socialite\Factory;
+use MshkQ\Contracts\Socialite\Factory;
 use Illuminate\Support\ServiceProvider;
 
 class SocialiteServiceProvider extends ServiceProvider

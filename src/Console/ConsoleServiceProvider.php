@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Console;
+namespace MshkQ\Console;
 
-use Discuz\Console\Event\Configuring;
+use MshkQ\Console\Event\Configuring;
 use Illuminate\Console\Scheduling\ScheduleRunCommand;
 use Illuminate\Database\Console\Seeds\SeedCommand;
 use Illuminate\Database\Console\Seeds\SeederMakeCommand;

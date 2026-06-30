@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Foundation;
+namespace MshkQ\Foundation;
 
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Container\Container as ContainerContract;
@@ -534,7 +534,7 @@ class Application extends Container implements ContainerContract
         foreach ([
                      'app'                  => [self::class, \Illuminate\Contracts\Container\Container::class, \Illuminate\Contracts\Foundation\Application::class, \Psr\Container\ContainerInterface::class],
                      'blade.compiler'       => [\Illuminate\View\Compilers\BladeCompiler::class],
-                     'cache'                => [\Discuz\Cache\CacheManager::class, \Illuminate\Contracts\Cache\Factory::class],
+                     'cache'                => [\MshkQ\Cache\CacheManager::class, \Illuminate\Contracts\Cache\Factory::class],
                      'cache.store'          => [\Illuminate\Cache\Repository::class, \Illuminate\Contracts\Cache\Repository::class],
                      'config'               => [\Illuminate\Config\Repository::class, \Illuminate\Contracts\Config\Repository::class],
 //                     'cookie'               => [\Illuminate\Cookie\CookieJar::class, \Illuminate\Contracts\Cookie\Factory::class, \Illuminate\Contracts\Cookie\QueueingFactory::class],

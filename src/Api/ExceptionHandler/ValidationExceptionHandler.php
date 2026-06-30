@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\ExceptionHandler;
+namespace MshkQ\Api\ExceptionHandler;
 
 use App\Common\ResponseCode;
-use Discuz\Common\Utils;
+use MshkQ\Common\Utils;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Tobscure\JsonApi\Exception\Handler\ExceptionHandlerInterface;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Qcloud;
+namespace MshkQ\Qcloud;
 
 
 use App\Common\Statistics;

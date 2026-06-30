@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Locale;
+namespace MshkQ\Locale;
 
 use DirectoryIterator;
 use Illuminate\Support\ServiceProvider;

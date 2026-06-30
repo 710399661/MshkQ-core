@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Events;
+namespace MshkQ\Api\Events;
 
 use Tobscure\JsonApi\ErrorHandler;
 

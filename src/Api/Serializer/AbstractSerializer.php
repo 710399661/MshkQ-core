@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Serializer;
+namespace MshkQ\Api\Serializer;
 
 use App\Models\User;
 use Closure;
 use DateTime;
-use Discuz\Api\Events\Serializing;
+use MshkQ\Api\Events\Serializing;
 use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Tobscure\JsonApi\AbstractSerializer as BaseAbstractSerializer;
