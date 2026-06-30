@@ -1,5 +1,5 @@
 {
-    "name": "MshkQ/core",
+    "name": "mshkq/core",
     "description": "The MshkQ Framework",
     "require": {
         "php": "^8.1",
