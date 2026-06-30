@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\ExceptionHandler;
+namespace MshkQ\Api\ExceptionHandler;
 
 use Exception;
 use Qcloud\Cos\Exception\ServiceResponseException;
-use Tobscure\JsonApi\Exception\Handler\ExceptionHandlerInterface;
-use Tobscure\JsonApi\Exception\Handler\ResponseBag;
+use MshkQ\JsonApi\Exception\Handler\ExceptionHandlerInterface;
+use MshkQ\JsonApi\Exception\Handler\ResponseBag;
 
 class ServiceResponseExceptionHandler implements ExceptionHandlerInterface
 {
@@ -43,7 +43,7 @@ class ServiceResponseExceptionHandler implements ExceptionHandlerInterface
      *
      * @param \Exception $e
      *
-     * @return \Tobscure\JsonApi\Exception\Handler\ResponseBag
+     * @return \MshkQ\JsonApi\Exception\Handler\ResponseBag
      */
     public function handle(Exception $e)
     {

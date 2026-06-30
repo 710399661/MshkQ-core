@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications\Traits;
+namespace MshkQ\Notifications\Traits;
 
 use App\Models\NotificationTpl;
 use Carbon\Carbon;
-use Discuz\Http\UrlGenerator;
+use MshkQ\Http\UrlGenerator;
 
 trait VariableTemplateTrait
 {

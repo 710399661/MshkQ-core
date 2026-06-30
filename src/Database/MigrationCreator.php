@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Database;
+namespace MshkQ\Database;
 
 use Illuminate\Database\Migrations\MigrationCreator as BaseMigrationCreator;
 

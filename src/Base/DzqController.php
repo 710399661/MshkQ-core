@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-namespace Discuz\Base;
+namespace MshkQ\Base;
 
 use App\Common\ResponseCode;
 use App\Repositories\UserRepository;
 use DateTime;
-use Discuz\Auth\Exception\PermissionDeniedException;
-use Discuz\Common\Utils;
-use Discuz\Contracts\Setting\SettingsRepository;
+use MshkQ\Auth\Exception\PermissionDeniedException;
+use MshkQ\Common\Utils;
+use MshkQ\Contracts\Setting\SettingsRepository;
 use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -215,7 +215,7 @@ abstract class DzqController implements RequestHandlerInterface
         $builder = $toArray ? $builder->toArray() : $builder;
         $url = $this->request->getUri();
         $port = $url->getPort();
-        $port = $port == null ? '' : ':' . $port;
+        $port = $port === null ? '' : ':' . $port;
         parse_str($url->getQuery(), $query);
         $queryFirst = $queryNext = $queryPre = $query;
         $queryFirst['page'] = 1;
@@ -246,7 +246,7 @@ abstract class DzqController implements RequestHandlerInterface
         $builder = $builder->toArray();
         $url = $this->request->getUri();
         $port = $url->getPort();
-        $port = $port == null ? '' : ':' . $port;
+        $port = $port === null ? '' : ':' . $port;
         parse_str($url->getQuery(), $query);
         unset($query['preload']);
         $ret = [];
@@ -295,7 +295,7 @@ abstract class DzqController implements RequestHandlerInterface
         $builder = is_object($builder) ? $toArray ? $builder->toArray() : $builder : $builder;
         $url = $this->request->getUri();
         $port = $url->getPort();
-        $port = $port == null ? '' : ':' . $port;
+        $port = $port === null ? '' : ':' . $port;
         parse_str($url->getQuery(), $query);
         $queryFirst = $queryNext = $queryPre = $query;
         $queryFirst['page'] = 1;
@@ -326,7 +326,7 @@ abstract class DzqController implements RequestHandlerInterface
      * @param DateTime|null $date
      * @return string|null
      */
-    protected function formatDate(DateTime $date = null)
+    protected function formatDate(?DateTime $date = null)
     {
         if ($date) {
             return $date->format(DateTime::RFC3339);

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Search;
+namespace MshkQ\Search;
 
-use Discuz\Contracts\Search\Search;
-use Tobscure\JsonApi\Exception\InvalidParameterException;
-use Tobscure\JsonApi\Parameters;
+use MshkQ\Contracts\Search\Search;
+use MshkQ\JsonApi\Exception\InvalidParameterException;
+use MshkQ\JsonApi\Parameters;
 
 abstract class AbstractSearch implements Search
 {

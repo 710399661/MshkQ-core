@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Database;
+namespace MshkQ\Database;
 
 use App\Models\User;
-use Discuz\Api\Events\ScopeModelVisibility;
+use MshkQ\Api\Events\ScopeModelVisibility;
 use Illuminate\Database\Eloquent\Builder;
 
 trait ScopeVisibilityTrait

@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api;
+namespace MshkQ\Api;
 
 use App\Common\ResponseCode;
-use Discuz\Base\DzqBase;
-use Discuz\Base\DzqLog;
-use Discuz\Http\DiscuzResponseFactory;
+use MshkQ\Base\DzqBase;
+use MshkQ\Base\DzqLog;
+use MshkQ\Http\DiscuzResponseFactory;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Psr\Log\LoggerInterface;
 use Throwable;
-use Tobscure\JsonApi\Document;
-use Tobscure\JsonApi\ErrorHandler as JsonApiErrorHandler;
+use MshkQ\JsonApi\Document;
+use MshkQ\JsonApi\ErrorHandler as JsonApiErrorHandler;
 
 class ErrorHandler extends DzqBase
 {

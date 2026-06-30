@@ -16,16 +16,16 @@
  * limitations under the License.
  */
 
-namespace Discuz\Socialite\Two;
+namespace MshkQ\Socialite\Two;
 
 use App\Models\SessionToken;
-use Discuz\Http\DiscuzResponseFactory;
-use Discuz\Socialite\Exception\InvalidStateException;
+use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Socialite\Exception\InvalidStateException;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Discuz\Contracts\Socialite\Provider as ProviderContract;
+use MshkQ\Contracts\Socialite\Provider as ProviderContract;
 use Psr\Http\Message\ServerRequestInterface;
 
 abstract class AbstractProvider implements ProviderContract
@@ -239,7 +239,7 @@ abstract class AbstractProvider implements ProviderContract
      * Get a Social User instance from a known access token.
      *
      * @param  string  $token
-     * @return \Discuz\Socialite\Two\User
+     * @return \MshkQ\Socialite\Two\User
      */
     public function userFromToken($token)
     {

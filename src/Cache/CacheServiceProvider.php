@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Cache;
+namespace MshkQ\Cache;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;

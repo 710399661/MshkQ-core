@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Search;
+namespace MshkQ\Search;
 
-use Discuz\Contracts\Search\Search;
-use Discuz\Contracts\Search\SearchBuilder;
-use Discuz\Contracts\Search\Searcher;
+use MshkQ\Contracts\Search\Search;
+use MshkQ\Contracts\Search\SearchBuilder;
+use MshkQ\Contracts\Search\Searcher;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;

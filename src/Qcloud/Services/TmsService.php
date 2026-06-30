@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Qcloud\Services;
+namespace MshkQ\Qcloud\Services;
 
 use TencentCloud\Tms\V20200713\TmsClient;
 use TencentCloud\Tms\V20200713\Models\TextModerationRequest;

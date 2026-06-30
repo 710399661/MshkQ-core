@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Database;
+namespace MshkQ\Database;
 
-use Discuz\Console\Event\Configuring;
+use MshkQ\Console\Event\Configuring;
 use Illuminate\Database\Console\Migrations\FreshCommand;
 use Illuminate\Database\Console\Migrations\InstallCommand;
 use Illuminate\Database\Console\Migrations\MigrateCommand;

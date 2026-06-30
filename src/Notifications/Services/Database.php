@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications\Services;
+namespace MshkQ\Notifications\Services;
 
 class Database extends AbstractDriver
 {

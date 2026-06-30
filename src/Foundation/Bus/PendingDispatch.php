@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Foundation\Bus;
+namespace MshkQ\Foundation\Bus;
 
 use Illuminate\Contracts\Bus\Dispatcher;
 

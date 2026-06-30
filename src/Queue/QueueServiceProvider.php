@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Queue;
+namespace MshkQ\Queue;
 
-use Discuz\Console\Event\Configuring;
+use MshkQ\Console\Event\Configuring;
 use Illuminate\Contracts\Debug\ExceptionHandler as ContractsExceptionHandler;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Queue\Connectors\RedisConnector;
@@ -30,7 +30,7 @@ use Illuminate\Support\Str;
 // opis/closure 4.x: SerializableClosure no longer needs setSecretKey
 use Illuminate\Queue\Console;
 use Illuminate\Queue\Listener as QueueListener;
-use Discuz\Foundation\ExceptionHandler;
+use MshkQ\Foundation\ExceptionHandler;
 
 class QueueServiceProvider extends ServiceProvider implements DeferrableProvider
 {

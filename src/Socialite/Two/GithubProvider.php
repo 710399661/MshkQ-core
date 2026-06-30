@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Socialite\Two;
+namespace MshkQ\Socialite\Two;
 
 use Exception;
 use Illuminate\Support\Arr;
-use Discuz\Contracts\Socialite\Provider as ProviderInterface;
+use MshkQ\Contracts\Socialite\Provider as ProviderInterface;
 
 class GithubProvider extends AbstractProvider implements ProviderInterface
 {

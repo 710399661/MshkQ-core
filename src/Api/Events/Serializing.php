@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Events;
+namespace MshkQ\Api\Events;
 
 use App\Models\User;
 use DateTime;
-use Discuz\Api\Serializer\AbstractSerializer;
+use MshkQ\Api\Serializer\AbstractSerializer;
 
 /**
  * Prepare API attributes.
@@ -82,7 +82,7 @@ class Serializing
      * @param DateTime|null $date
      * @return string|null
      */
-    public function formatDate(DateTime $date = null)
+    public function formatDate(?DateTime $date = null)
     {
         if ($date) {
             return $date->format(DateTime::RFC3339);

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Wechat;
+namespace MshkQ\Wechat;
 
-use Discuz\Contracts\Qcloud\Factory;
-use Discuz\Wechat\MiniProgram\MiniProgramService;
-use Discuz\Wechat\Offiaccount\OffiaccountService;
+use MshkQ\Contracts\Qcloud\Factory;
+use MshkQ\Wechat\MiniProgram\MiniProgramService;
+use MshkQ\Wechat\Offiaccount\OffiaccountService;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Manager;
 use InvalidArgumentException;

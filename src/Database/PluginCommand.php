@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Database;
+namespace MshkQ\Database;
 
 use App\Common\CacheKey;
-use Discuz\Base\DzqCache;
-use Discuz\Common\Utils;
+use MshkQ\Base\DzqCache;
+use MshkQ\Common\Utils;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -49,7 +49,7 @@ class PluginCommand extends Command
                 break;
             }
         }
-        if ($rightName == false) throw new \Exception("plugin name is not exist,confirm your parameter of `$name`.");
+        if ($rightName === false) throw new \Exception("plugin name is not exist,confirm your parameter of `$name`.");
     }
 
     protected function getOptions()

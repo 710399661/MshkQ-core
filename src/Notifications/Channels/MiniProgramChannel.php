@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications\Channels;
+namespace MshkQ\Notifications\Channels;
 
 use App\Models\NotificationTpl;
-use Discuz\Contracts\Setting\SettingsRepository;
-use Discuz\Wechat\EasyWechatTrait;
+use MshkQ\Contracts\Setting\SettingsRepository;
+use MshkQ\Wechat\EasyWechatTrait;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
@@ -26,7 +26,7 @@ use Illuminate\Notifications\Notification;
  * 小程序通知 - 频道
  * Class WechatChannel
  *
- * @package Discuz\Notifications\Channels
+ * @package MshkQ\Notifications\Channels
  */
 class MiniProgramChannel
 {

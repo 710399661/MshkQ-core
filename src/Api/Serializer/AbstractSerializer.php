@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Serializer;
+namespace MshkQ\Api\Serializer;
 
 use App\Models\User;
 use Closure;
 use DateTime;
-use Discuz\Api\Events\Serializing;
+use MshkQ\Api\Events\Serializing;
 use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Tobscure\JsonApi\AbstractSerializer as BaseAbstractSerializer;
-use Tobscure\JsonApi\Collection;
-use Tobscure\JsonApi\Relationship;
-use Tobscure\JsonApi\Resource;
-use Tobscure\JsonApi\SerializerInterface;
+use MshkQ\JsonApi\AbstractSerializer as BaseAbstractSerializer;
+use MshkQ\JsonApi\Collection;
+use MshkQ\JsonApi\Relationship;
+use MshkQ\JsonApi\Resource;
+use MshkQ\JsonApi\SerializerInterface;
 
 abstract class AbstractSerializer extends BaseAbstractSerializer
 {
@@ -97,7 +97,7 @@ abstract class AbstractSerializer extends BaseAbstractSerializer
      * @param DateTime|null $date
      * @return string|null
      */
-    protected function formatDate(DateTime $date = null)
+    protected function formatDate(?DateTime $date = null)
     {
         if ($date) {
             return $date->format(DateTime::RFC3339);
@@ -140,7 +140,7 @@ abstract class AbstractSerializer extends BaseAbstractSerializer
     protected function buildRelationship($model, $serializer, $relation = null, $many = false)
     {
         if (is_null($relation)) {
-            list(, , $caller) = debug_backtrace(false, 3);
+            [, , $caller] = debug_backtrace(false, 3);
 
             $relation = $caller['function'];
         }

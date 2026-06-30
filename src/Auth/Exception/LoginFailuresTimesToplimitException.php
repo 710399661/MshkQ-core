@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace Discuz\Auth\Exception;
+namespace MshkQ\Auth\Exception;
 
 use Exception;
 use Throwable;
 
 class LoginFailuresTimesToplimitException extends Exception
 {
-    public function __construct($message = 'Login Failures Times Toplimit', $code = 402, Throwable $previous = null)
+    public function __construct($message = 'Login Failures Times Toplimit', $code = 402, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http\Middleware;
+namespace MshkQ\Http\Middleware;
 
 use App\Common\CacheKey;
 use App\Common\ResponseCode;
 use App\Models\User;
 use App\Passport\Repositories\AccessTokenRepository;
-use Discuz\Auth\Guest;
-use Discuz\Common\Utils;
+use MshkQ\Auth\Guest;
+use MshkQ\Common\Utils;
 use Illuminate\Support\Arr;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\ResourceServer;
@@ -37,7 +37,7 @@ class AuthenticateWithHeader implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        list($headerLine, $request) = $this->getHeaderLine($request);
+        [$headerLine, $request] = $this->getHeaderLine($request);
         if ($headerLine) {
             $accessTokenRepository = new AccessTokenRepository();
             $publickey = new CryptKey(storage_path('cert/public.key'), '', false);
@@ -180,7 +180,7 @@ class AuthenticateWithHeader implements MiddlewareInterface
             if (!preg_match($data['regex'], $uri, $matches)) {
                 continue;
             }
-            list($handler, $varNames) = $data['routeMap'][count($matches)];
+            [$handler, $varNames] = $data['routeMap'][count($matches)];
             $vars = [];
             $i = 0;
             foreach ($varNames as $varName) {

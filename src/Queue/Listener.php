@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Queue;
+namespace MshkQ\Queue;
 
 use Illuminate\Queue\ListenerOptions;
 

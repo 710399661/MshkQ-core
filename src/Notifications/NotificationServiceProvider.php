@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications;
+namespace MshkQ\Notifications;
 
 use Illuminate\Contracts\Notifications\Dispatcher as DispatcherContract;
 use Illuminate\Contracts\Notifications\Factory as FactoryContract;

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Foundation;
+namespace MshkQ\Foundation;
 
-use Discuz\Contracts\Policy\Policy;
-use Discuz\Api\Events\GetPermission;
-use Discuz\Api\Events\ScopeModelVisibility;
+use MshkQ\Contracts\Policy\Policy;
+use MshkQ\Api\Events\GetPermission;
+use MshkQ\Api\Events\ScopeModelVisibility;
 use Illuminate\Contracts\Events\Dispatcher;
 
 abstract class AbstractPolicy implements Policy

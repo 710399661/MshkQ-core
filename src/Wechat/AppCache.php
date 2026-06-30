@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Wechat;
+namespace MshkQ\Wechat;
 use App\Common\CacheKey;
 use Psr\SimpleCache\CacheInterface;
 

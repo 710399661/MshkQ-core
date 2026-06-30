@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http\Middleware;
+namespace MshkQ\Http\Middleware;
 
-use Discuz\Foundation\Application;
-use Discuz\Http\DiscuzResponseFactory;
-use Discuz\Http\Exception\NotConfig;
-use Discuz\Http\UrlGenerator;
+use MshkQ\Foundation\Application;
+use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\Exception\NotConfig;
+use MshkQ\Http\UrlGenerator;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

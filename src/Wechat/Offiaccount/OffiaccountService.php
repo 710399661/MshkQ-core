@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Wechat\Offiaccount;
+namespace MshkQ\Wechat\Offiaccount;
 
-use Discuz\Contracts\Setting\SettingsRepository;
-use Discuz\Wechat\AppCache;
+use MshkQ\Contracts\Setting\SettingsRepository;
+use MshkQ\Wechat\AppCache;
 use EasyWeChat\OfficialAccount\Application as OfficialAccountApplication;
 
 class OffiaccountService

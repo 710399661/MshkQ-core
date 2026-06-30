@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Base;
+namespace MshkQ\Base;
 
-use Discuz\Console\AbstractCommand;
+use MshkQ\Console\AbstractCommand;
 
 abstract class DzqCommand extends AbstractCommand
 {

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Foundation;
+namespace MshkQ\Foundation;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -30,7 +30,7 @@ abstract class AbstractRepository
      * @param User $actor
      * @return Builder
      */
-    protected function scopeVisibleTo(Builder $query, User $actor = null)
+    protected function scopeVisibleTo(Builder $query, ?User $actor = null)
     {
         if ($actor !== null) {
             $query->whereVisibleTo($actor);

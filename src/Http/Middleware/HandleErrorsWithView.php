@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http\Middleware;
+namespace MshkQ\Http\Middleware;
 
-use Discuz\Http\DiscuzResponseFactory;
+use MshkQ\Http\DiscuzResponseFactory;
 use Illuminate\View\Factory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

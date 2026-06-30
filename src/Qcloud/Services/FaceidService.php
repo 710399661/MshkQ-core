@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Qcloud\Services;
+namespace MshkQ\Qcloud\Services;
 
 use Illuminate\Support\Arr;
 use TencentCloud\Faceid\V20180301\FaceidClient;

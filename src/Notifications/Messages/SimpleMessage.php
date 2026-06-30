@@ -1,11 +1,11 @@
 <?php
 
-namespace Discuz\Notifications\Messages;
+namespace MshkQ\Notifications\Messages;
 
 use App\Models\NotificationTpl;
 use App\Models\Post;
-use Discuz\Notifications\Traits\VariableTemplateTrait;
-use Discuz\Wechat\EasyWechatTrait;
+use MshkQ\Notifications\Traits\VariableTemplateTrait;
+use MshkQ\Wechat\EasyWechatTrait;
 use Illuminate\Support\Str;
 
 abstract class SimpleMessage

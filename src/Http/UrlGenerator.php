@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http;
+namespace MshkQ\Http;
 
-use Discuz\Foundation\Application;
+use MshkQ\Foundation\Application;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContracts;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;

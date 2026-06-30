@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Filesystem;
+namespace MshkQ\Filesystem;
 
-use Discuz\Contracts\Setting\SettingsRepository;
+use MshkQ\Contracts\Setting\SettingsRepository;
 use GuzzleHttp\Client;
 use Illuminate\Filesystem\FilesystemServiceProvider as ServiceProvider;
 use Illuminate\Support\Arr;

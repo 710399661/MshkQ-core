@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Models;
+namespace MshkQ\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

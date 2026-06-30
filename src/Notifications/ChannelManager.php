@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications;
+namespace MshkQ\Notifications;
 
 use Illuminate\Contracts\Bus\Dispatcher as Bus;
 use Illuminate\Contracts\Events\Dispatcher;

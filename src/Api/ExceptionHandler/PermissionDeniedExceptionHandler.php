@@ -16,15 +16,15 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\ExceptionHandler;
+namespace MshkQ\Api\ExceptionHandler;
 
 use App\Common\ResponseCode;
-use Discuz\Auth\Exception\PermissionDeniedException;
-use Discuz\Contracts\Setting\SettingsRepository;
+use MshkQ\Auth\Exception\PermissionDeniedException;
+use MshkQ\Contracts\Setting\SettingsRepository;
 use Exception;
-use Tobscure\JsonApi\Exception\Handler\ExceptionHandlerInterface;
-use Tobscure\JsonApi\Exception\Handler\ResponseBag;
-use Discuz\Common\Utils;
+use MshkQ\JsonApi\Exception\Handler\ExceptionHandlerInterface;
+use MshkQ\JsonApi\Exception\Handler\ResponseBag;
+use MshkQ\Common\Utils;
 
 class PermissionDeniedExceptionHandler implements ExceptionHandlerInterface
 {

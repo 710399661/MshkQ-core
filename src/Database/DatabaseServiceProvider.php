@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Database;
+namespace MshkQ\Database;
 
-use Discuz\Console\Event\Configuring;
-use Discuz\Database\Console\MigrateMakeCommand;
+use MshkQ\Console\Event\Configuring;
+use MshkQ\Database\Console\MigrateMakeCommand;
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\Connectors\ConnectionFactory;
 use Illuminate\Database\Console\Migrations\MigrateCommand;

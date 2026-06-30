@@ -16,15 +16,15 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Listeners;
+namespace MshkQ\Api\Listeners;
 
-use Discuz\Api\Events\ApiExceptionRegisterHandler;
-use Discuz\Foundation\Application;
+use MshkQ\Api\Events\ApiExceptionRegisterHandler;
+use MshkQ\Foundation\Application;
 use Illuminate\Support\Str;
 use ReflectionClass;
 use SplFileInfo;
 use Symfony\Component\Finder\Finder;
-use Tobscure\JsonApi\Exception\Handler\ExceptionHandlerInterface;
+use MshkQ\JsonApi\Exception\Handler\ExceptionHandlerInterface;
 
 class AutoResisterApiExceptionRegisterHandler
 {

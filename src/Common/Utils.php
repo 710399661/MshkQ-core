@@ -1,16 +1,16 @@
 <?php
 
-namespace Discuz\Common;
+namespace MshkQ\Common;
 
 use App\Common\CacheKey;
 use App\Common\DzqConst;
 use App\Common\ResponseCode;
-use Discuz\Base\DzqCache;
-use Discuz\Base\DzqLog;
-use Discuz\Http\RouteCollection;
+use MshkQ\Base\DzqCache;
+use MshkQ\Base\DzqLog;
+use MshkQ\Http\RouteCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Discuz\Http\DiscuzResponseFactory;
+use MshkQ\Http\DiscuzResponseFactory;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -259,7 +259,7 @@ class Utils
                 return $this->$property;
             }, $object, $object)->__invoke();
         };
-        $console = app()->make(\Discuz\Console\Kernel::class);
+        $console = app()->make(\MshkQ\Console\Kernel::class);
         $console->call($cmd, $params);
         $lastOutput = $reader($console, 'lastOutput');
         return $lastOutput->fetch();

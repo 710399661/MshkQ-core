@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Controller;
+namespace MshkQ\Api\Controller;
 
-use Tobscure\JsonApi\Resource;
-use Tobscure\JsonApi\SerializerInterface;
+use MshkQ\JsonApi\Resource;
+use MshkQ\JsonApi\SerializerInterface;
 
 abstract class AbstractResourceController extends AbstractSerializeController
 {

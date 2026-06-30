@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Discuz\Base;
+namespace MshkQ\Base;
 
 
-use Discuz\Console\Kernel;
+use MshkQ\Console\Kernel;
 use Illuminate\Console\Scheduling\Schedule;
 
 abstract class DzqKernel extends Kernel

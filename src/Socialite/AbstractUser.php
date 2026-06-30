@@ -16,12 +16,13 @@
  * limitations under the License.
  */
 
-namespace Discuz\Socialite;
+namespace MshkQ\Socialite;
 
-use Discuz\Contracts\Socialite\User;
+use MshkQ\Contracts\Socialite\User;
 
 use ArrayAccess;
 
+#[AllowDynamicProperties]
 abstract class AbstractUser implements ArrayAccess, User
 {
     /**
@@ -158,7 +159,7 @@ abstract class AbstractUser implements ArrayAccess, User
      * @param  string  $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->user);
     }
@@ -181,7 +182,7 @@ abstract class AbstractUser implements ArrayAccess, User
      * @param  mixed  $value
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->user[$offset] = $value;
     }
@@ -192,7 +193,7 @@ abstract class AbstractUser implements ArrayAccess, User
      * @param  string  $offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->user[$offset]);
     }

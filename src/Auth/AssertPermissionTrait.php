@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace Discuz\Auth;
+namespace MshkQ\Auth;
 
 use App\Models\User;
-use Discuz\Auth\Exception\NotAuthenticatedException;
-use Discuz\Auth\Exception\PermissionDeniedException;
+use MshkQ\Auth\Exception\NotAuthenticatedException;
+use MshkQ\Auth\Exception\PermissionDeniedException;
 
 trait AssertPermissionTrait
 {

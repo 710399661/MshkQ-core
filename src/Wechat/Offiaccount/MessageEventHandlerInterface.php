@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Wechat\Offiaccount;
+namespace MshkQ\Wechat\Offiaccount;
 
 use App\Models\WechatOffiaccountReply;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Collection;
  *
  * 注册多个消息处理器
  *
- * @package Discuz\Wechat\Offiaccount
+ * @package MshkQ\Wechat\Offiaccount
  */
 abstract class MessageEventHandlerInterface implements EventHandlerInterface
 {

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Base;
+namespace MshkQ\Base;
 
 
 use App\Common\CacheKey;
@@ -160,7 +160,7 @@ class DzqCache
         }
         if ($ret === false && !empty($callBack)) {
             $ret = $callBack($hashKeys);
-            list($resultWithNull, $resultNotNull) = self::hMSetResult($ret, $index, $mutiColumn, $hashKeys, null);
+            [$resultWithNull, $resultNotNull] = self::hMSetResult($ret, $index, $mutiColumn, $hashKeys, null);
             if ($autoCache) {
                 if (isset(CacheKey::$fileStore[$key])) {
                     self::putFragmentFileStore($key, $resultWithNull);

@@ -16,33 +16,33 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api;
+namespace MshkQ\Api;
 
-use Discuz\Api\Controller\AbstractSerializeController;
-use Discuz\Api\Events\ApiExceptionRegisterHandler;
-use Discuz\Api\Events\ConfigMiddleware;
-use Discuz\Api\ExceptionHandler\FallbackExceptionHandler;
-use Discuz\Api\ExceptionHandler\LoginFailedExceptionHandler;
-use Discuz\Api\ExceptionHandler\LoginFailuresTimesToplimitExceptionHandler;
-use Discuz\Api\ExceptionHandler\NotAuthenticatedExceptionHandler;
-use Discuz\Api\ExceptionHandler\PermissionDeniedExceptionHandler;
-use Discuz\Api\ExceptionHandler\RouteNotFoundExceptionHandler;
-use Discuz\Api\ExceptionHandler\ServiceResponseExceptionHandler;
-use Discuz\Api\ExceptionHandler\TencentCloudSDKExceptionHandler;
-use Discuz\Api\ExceptionHandler\ValidationExceptionHandler;
-use Discuz\Api\Listeners\AutoResisterApiExceptionRegisterHandler;
-use Discuz\Api\Middleware\HandlerErrors;
-use Discuz\Api\Middleware\InstallMiddleware;
-use Discuz\Foundation\Application;
-use Discuz\Http\Middleware\AuthenticateWithHeader;
-use Discuz\Http\Middleware\CheckoutSite;
-use Discuz\Http\Middleware\CheckUserStatus;
-use Discuz\Http\Middleware\DispatchRoute;
-use Discuz\Http\Middleware\ParseJsonBody;
-use Discuz\Http\Middleware\OptionsRequest;
-use Discuz\Http\RouteCollection;
+use MshkQ\Api\Controller\AbstractSerializeController;
+use MshkQ\Api\Events\ApiExceptionRegisterHandler;
+use MshkQ\Api\Events\ConfigMiddleware;
+use MshkQ\Api\ExceptionHandler\FallbackExceptionHandler;
+use MshkQ\Api\ExceptionHandler\LoginFailedExceptionHandler;
+use MshkQ\Api\ExceptionHandler\LoginFailuresTimesToplimitExceptionHandler;
+use MshkQ\Api\ExceptionHandler\NotAuthenticatedExceptionHandler;
+use MshkQ\Api\ExceptionHandler\PermissionDeniedExceptionHandler;
+use MshkQ\Api\ExceptionHandler\RouteNotFoundExceptionHandler;
+use MshkQ\Api\ExceptionHandler\ServiceResponseExceptionHandler;
+use MshkQ\Api\ExceptionHandler\TencentCloudSDKExceptionHandler;
+use MshkQ\Api\ExceptionHandler\ValidationExceptionHandler;
+use MshkQ\Api\Listeners\AutoResisterApiExceptionRegisterHandler;
+use MshkQ\Api\Middleware\HandlerErrors;
+use MshkQ\Api\Middleware\InstallMiddleware;
+use MshkQ\Foundation\Application;
+use MshkQ\Http\Middleware\AuthenticateWithHeader;
+use MshkQ\Http\Middleware\CheckoutSite;
+use MshkQ\Http\Middleware\CheckUserStatus;
+use MshkQ\Http\Middleware\DispatchRoute;
+use MshkQ\Http\Middleware\ParseJsonBody;
+use MshkQ\Http\Middleware\OptionsRequest;
+use MshkQ\Http\RouteCollection;
 use Illuminate\Support\ServiceProvider;
-use Tobscure\JsonApi\ErrorHandler;
+use MshkQ\JsonApi\ErrorHandler;
 use Laminas\Stratigility\MiddlewarePipe;
 
 class ApiServiceProvider extends ServiceProvider

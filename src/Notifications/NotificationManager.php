@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-namespace Discuz\Notifications;
+namespace MshkQ\Notifications;
 
-use Discuz\Notifications\Services\Database;
-use Discuz\Notifications\Services\MiniProgram;
-use Discuz\Notifications\Services\Sms;
-use Discuz\Notifications\Services\Wechat;
+use MshkQ\Notifications\Services\Database;
+use MshkQ\Notifications\Services\MiniProgram;
+use MshkQ\Notifications\Services\Sms;
+use MshkQ\Notifications\Services\Wechat;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Qcloud;
+namespace MshkQ\Qcloud;
 
 use Illuminate\Support\ServiceProvider;
 

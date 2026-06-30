@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace Discuz\Search;
+namespace MshkQ\Search;
 
-use Discuz\Contracts\Search\SearchBuilder;
+use MshkQ\Contracts\Search\SearchBuilder;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 
 abstract class AbstractSearchBuilder implements SearchBuilder

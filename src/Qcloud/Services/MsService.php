@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Qcloud\Services;
+namespace MshkQ\Qcloud\Services;
 
 use TencentCloud\Ms\V20180408\MsClient;
 use TencentCloud\Ms\V20180408\Models\DescribeUserBaseInfoInstanceRequest;

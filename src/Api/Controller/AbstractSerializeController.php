@@ -16,20 +16,20 @@
  * limitations under the License.
  */
 
-namespace Discuz\Api\Controller;
+namespace MshkQ\Api\Controller;
 
 use App\Formatter\BaseFormatter;
-use Discuz\Api\Events\WillSerializeData;
-use Discuz\Http\DiscuzResponseFactory;
+use MshkQ\Api\Events\WillSerializeData;
+use MshkQ\Http\DiscuzResponseFactory;
 use Illuminate\Contracts\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Tobscure\JsonApi\Document;
-use Tobscure\JsonApi\ElementInterface;
-use Tobscure\JsonApi\Exception\InvalidParameterException;
-use Tobscure\JsonApi\Parameters;
-use Tobscure\JsonApi\SerializerInterface;
+use MshkQ\JsonApi\Document;
+use MshkQ\JsonApi\ElementInterface;
+use MshkQ\JsonApi\Exception\InvalidParameterException;
+use MshkQ\JsonApi\Parameters;
+use MshkQ\JsonApi\SerializerInterface;
 
 abstract class AbstractSerializeController implements RequestHandlerInterface
 {

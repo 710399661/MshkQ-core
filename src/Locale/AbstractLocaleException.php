@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace Discuz\Locale;
+namespace MshkQ\Locale;
 
 use Exception;
 
 /**
  * Class AbstractLocaleException
  *
- * @package Discuz\Locale
+ * @package MshkQ\Locale
  */
 abstract class AbstractLocaleException extends Exception
 {
@@ -36,7 +36,7 @@ abstract class AbstractLocaleException extends Exception
 
     protected $message;
 
-    public function __construct($message = '', $code = 500, Exception $previous = null)
+    public function __construct($message = '', $code = 500, ?Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http\Middleware;
+namespace MshkQ\Http\Middleware;
 
 use App\Common\ResponseCode;
 use App\Models\User;
 use App\Models\UserSignInFields;
-use Discuz\Auth\Exception\PermissionDeniedException;
-use Discuz\Common\Utils;
-use Discuz\Contracts\Setting\SettingsRepository;
+use MshkQ\Auth\Exception\PermissionDeniedException;
+use MshkQ\Common\Utils;
+use MshkQ\Contracts\Setting\SettingsRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Discuz\Http;
+namespace MshkQ\Http;
 
 use Illuminate\Http\File;
 use Illuminate\Support\Arr;
@@ -24,7 +24,7 @@ use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Tobscure\JsonApi\Document;
+use MshkQ\JsonApi\Document;
 
 class DiscuzResponseFactory
 {
