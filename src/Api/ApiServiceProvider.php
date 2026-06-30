@@ -49,7 +49,7 @@ class ApiServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('discuz.api.middleware', function (Application $app) {
+        $this->app->singleton('MshkQ.api.middleware', function (Application $app) {
             $pipe = new MiddlewarePipe();
 
             if (!$this->app->isInstall()) {
@@ -87,7 +87,7 @@ class ApiServiceProvider extends ServiceProvider
         });
 
         // 保证路由中间件最后执行
-        $this->app->afterResolving('discuz.api.middleware', function (MiddlewarePipe $pipe) {
+        $this->app->afterResolving('MshkQ.api.middleware', function (MiddlewarePipe $pipe) {
             $pipe->pipe($this->app->make(DispatchRoute::class));
         });
     }

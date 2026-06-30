@@ -23,7 +23,7 @@ use MshkQ\Contracts\Setting\SettingsRepository;
 use MshkQ\Qcloud\Services\BillingService;
 use MshkQ\Qcloud\Services\CaptchaService;
 use MshkQ\Qcloud\Services\CmsService;
-use MshkQ\Qcloud\Services\DiscuzCloudService;
+use MshkQ\Qcloud\Services\MshkQCloudService;
 use MshkQ\Qcloud\Services\FaceidService;
 use MshkQ\Qcloud\Services\ImsService;
 use MshkQ\Qcloud\Services\SmsService;
@@ -96,13 +96,13 @@ class QcloudManage extends Manager implements Factory
         return $this->buildService(SmsService::class, $config);
     }
 
-    public function createDiscuzCloudDriver()
+    public function createMshkQCloudDriver()
     {
         $config = [
-            'base_uri' => 'https://cloud.discuz.chat/api/',
+            'base_uri' => 'https://cloud.MshkQ.chat/api/',
             'timeout'  =>  15
         ];
-        return $this->buildService(DiscuzCloudService::class, $config);
+        return $this->buildService(MshkQCloudService::class, $config);
     }
 
     public function createYunsouDriver()

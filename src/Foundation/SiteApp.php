@@ -59,7 +59,7 @@ class SiteApp
     public function siteBoot($isHttp = false)
     {
         $this->app->instance('env', 'production');
-        $this->app->instance('discuz.config', $this->loadConfig());
+        $this->app->instance('MshkQ.config', $this->loadConfig());
         $this->app->instance('config', $this->getIlluminateConfig());
 
         $this->registerBaseEnv();
@@ -112,7 +112,7 @@ class SiteApp
 
     private function getIlluminateConfig()
     {
-        $discuzConfig = [
+        $MshkQConfig = [
             'queue' => $this->app->config('queue'),
             'filesystems' => $this->app->config('filesystems'),
             'app' => [
@@ -124,7 +124,7 @@ class SiteApp
         ];
 
         if ($this->app->config('cache')) {
-            $discuzConfig['cache'] = $this->app->config('cache');
+            $MshkQConfig['cache'] = $this->app->config('cache');
         }
 
         $config = new ConfigRepository(
@@ -152,7 +152,7 @@ class SiteApp
                             ],
                         ],
 
-                        'prefix' => 'discuz_cache',
+                        'prefix' => 'MshkQ_cache',
 
                     ],
                     'view' => [
@@ -162,7 +162,7 @@ class SiteApp
                         'compiled' => realpath(storage_path('views')),
                     ]
                 ],
-                $discuzConfig
+                $MshkQConfig
             )
         );
 

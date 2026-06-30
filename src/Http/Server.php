@@ -49,9 +49,9 @@ class Server extends SiteApp
         $pipe = new MiddlewarePipe();
 
         $pipe->pipe(new RequestHandler([
-            '/plugin'=>'discuz.api.middleware',
-            '/api' => 'discuz.api.middleware',
-            '/' => 'discuz.web.middleware'
+            '/plugin'=>'MshkQ.api.middleware',
+            '/api' => 'MshkQ.api.middleware',
+            '/' => 'MshkQ.web.middleware'
         ], $this->app));
 
         $request = ServerRequestFactory::fromGlobals();
@@ -76,7 +76,7 @@ class Server extends SiteApp
                 return $request;
             },
             function (Throwable $e) {
-                @file_put_contents('/tmp/discuz-error.log', date('Y-m-d H:i:s') . " RUNNER_ERROR: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n", FILE_APPEND);
+                @file_put_contents('/tmp/MshkQ-error.log', date('Y-m-d H:i:s') . " RUNNER_ERROR: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n", FILE_APPEND);
                 $response = new Response();
                 $response->getBody()->write(json_encode([
                     'code' => '500',
@@ -135,7 +135,7 @@ class Server extends SiteApp
         $this->app->make('log')->error($error);
         $trace = $error->getTraceAsString();
         return <<<ERROR
-            Discuz Q! encountered a boot error ($type)<br />
+            MshkQ Q! encountered a boot error ($type)<br />
             thrown in <b>$file</b> on line <b>$line</b><br/>
             <b>$message</b><br/>$trace
 
@@ -147,7 +147,7 @@ ERROR;
         $this->app->make('performancelog')->info(json_encode([
             'app_version' => Application::VERSION,
             'opcache_enable' => function_exists('opcache_get_status') ? opcache_get_status(true) : false,
-            'response_time' => microtime(true) - DISCUZ_START.'s',
+            'response_time' => microtime(true) - MshkQ_START.'s',
             'include_files' => count(get_included_files()),
             'memory_use' => $this->memory_usage(),
             'api_path' => $this->app->make('request')->getUri()->getPath(),

@@ -592,7 +592,7 @@ class Application extends Container implements ContainerContract
      */
     public function config($key, $default = null)
     {
-        return Arr::get($this->make('discuz.config'), $key, $default);
+        return Arr::get($this->make('MshkQ.config'), $key, $default);
     }
 
     /**

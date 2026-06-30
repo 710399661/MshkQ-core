@@ -21,7 +21,7 @@ namespace MshkQ\Api;
 use App\Common\ResponseCode;
 use MshkQ\Base\DzqBase;
 use MshkQ\Base\DzqLog;
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -86,6 +86,6 @@ class ErrorHandler extends DzqBase
         }
         $document = new Document;
         $document->setErrors($errors);
-        return DiscuzResponseFactory::JsonApiResponse($document, $response->getStatus());
+        return MshkQResponseFactory::JsonApiResponse($document, $response->getStatus());
     }
 }

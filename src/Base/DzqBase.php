@@ -19,7 +19,7 @@ namespace MshkQ\Base;
 
 use App\Common\ResponseCode;
 use MshkQ\Common\Utils;
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use Illuminate\Support\Str;
 
 class DzqBase

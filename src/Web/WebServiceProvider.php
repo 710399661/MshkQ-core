@@ -30,7 +30,7 @@ class WebServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('discuz.web.middleware', function ($app) {
+        $this->app->singleton('MshkQ.web.middleware', function ($app) {
             $app->register(ViewServiceProvider::class);
             $pipe = new MiddlewarePipe();
             if ($app->config('debug')) {
@@ -42,7 +42,7 @@ class WebServiceProvider extends ServiceProvider
         });
 
         //保证路由中间件最后执行
-        $this->app->afterResolving('discuz.web.middleware', function (MiddlewarePipe $pipe) {
+        $this->app->afterResolving('MshkQ.web.middleware', function (MiddlewarePipe $pipe) {
             $pipe->pipe($this->app->make(DispatchRoute::class));
         });
     }

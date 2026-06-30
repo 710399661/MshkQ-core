@@ -19,7 +19,7 @@
 namespace MshkQ\Socialite\Two;
 
 use App\Models\SessionToken;
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use MshkQ\Socialite\Exception\InvalidStateException;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
@@ -171,7 +171,7 @@ abstract class AbstractProvider implements ProviderContract
             $this->redirectUrl($redirectUrl);
         }
 
-        return DiscuzResponseFactory::RedirectResponse($this->getAuthUrl($state));
+        return MshkQResponseFactory::RedirectResponse($this->getAuthUrl($state));
     }
 
     /**

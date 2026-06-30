@@ -18,7 +18,7 @@
 
 namespace MshkQ\Api\Controller;
 
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -32,7 +32,7 @@ abstract class AbstractDeleteController implements RequestHandlerInterface
     {
         $this->delete($request);
 
-        return DiscuzResponseFactory::EmptyResponse(204);
+        return MshkQResponseFactory::EmptyResponse(204);
     }
 
     /**

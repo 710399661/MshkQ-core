@@ -19,7 +19,7 @@
 namespace MshkQ\Socialite\Two;
 
 use MshkQ\Contracts\Socialite\Provider as ProviderInterface;
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use MshkQ\Socialite\Exception\InvalidStateException;
 use MshkQ\Socialite\Exception\SocialiteException;
 
@@ -131,7 +131,7 @@ class QQProvider extends AbstractProvider implements ProviderInterface
         if ($redirectUrl = $this->request->getAttribute('redirect')) {
             $this->redirectUrl($redirectUrl);
         }
-        return DiscuzResponseFactory::RedirectResponse($this->getAuthUrl($state));
+        return MshkQResponseFactory::RedirectResponse($this->getAuthUrl($state));
     }
 
     /**
@@ -173,7 +173,7 @@ class QQProvider extends AbstractProvider implements ProviderInterface
             $sessionId = http_build_query(['sessionId' => $token->token]);
             $this->redirectUrl = $guzzle['redirect_user'].(strpos('?', $guzzle['redirect_user']) ? '&'.$sessionId : '?'.$sessionId);
         }
-        return DiscuzResponseFactory::RedirectResponse($this->redirectUrl.'&access_token='.$accessToken.'&state='.$state);
+        return MshkQResponseFactory::RedirectResponse($this->redirectUrl.'&access_token='.$accessToken.'&state='.$state);
     }
 
     protected function getUserByToken($token)

@@ -19,7 +19,7 @@
 namespace MshkQ\Web\Controller;
 
 use MshkQ\Foundation\Application;
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Factory;
 use Psr\Http\Message\ResponseInterface;
@@ -49,7 +49,7 @@ abstract class AbstractWebController implements RequestHandlerInterface
         if ($view instanceof Renderable) {
             $view = $view->render();
         }
-        return DiscuzResponseFactory::HtmlResponse($view);
+        return MshkQResponseFactory::HtmlResponse($view);
     }
 
     abstract public function render(ServerRequestInterface $request, Factory $view);

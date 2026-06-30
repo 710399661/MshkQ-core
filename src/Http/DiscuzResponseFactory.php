@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use MshkQ\JsonApi\Document;
 
-class DiscuzResponseFactory
+class MshkQResponseFactory
 {
     public static function JsonApiResponse(Document $document, int $code = 200, array $headers = []): ResponseInterface
     {

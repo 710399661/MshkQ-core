@@ -49,22 +49,22 @@ trait QcloudTrait
 
     public function checkVersion($params = [])
     {
-        return $this->getQcloud()->service('discuzcloud')->checkVersion($params);
+        return $this->getQcloud()->service('MshkQcloud')->checkVersion($params);
     }
 
     public function qcloudReport($params = [])
     {
-        return $this->getQcloud()->service('discuzcloud')->qcloudReport($params);
+        return $this->getQcloud()->service('MshkQcloud')->qcloudReport($params);
     }
 
     public function report($params = [])
     {
-        return $this->getQcloud()->service('discuzcloud')->report($params);
+        return $this->getQcloud()->service('MshkQcloud')->report($params);
     }
 
     public function statistics($params = [])
     {
-        return $this->getQcloud()->service('discuzcloud')->statistics($params);
+        return $this->getQcloud()->service('MshkQcloud')->statistics($params);
     }
 
     public function MsUserInfo()
@@ -79,17 +79,17 @@ trait QcloudTrait
 
     public function uinStatistics($params = [])
     {
-        return $this->getQcloud()->service('discuzcloud')->uinStatistics($params);
+        return $this->getQcloud()->service('MshkQcloud')->uinStatistics($params);
     }
 
     public function qcloudDaily($params = [])
     {
-        return $this->getQcloud()->service('discuzcloud')->qcloudDaily($params);
+        return $this->getQcloud()->service('MshkQcloud')->qcloudDaily($params);
     }
 
     public function siteInfoDaily($params = [])
     {
-        return $this->getQcloud()->service('discuzcloud')->siteInfoDaily($params);
+        return $this->getQcloud()->service('MshkQcloud')->siteInfoDaily($params);
     }
 
     /*

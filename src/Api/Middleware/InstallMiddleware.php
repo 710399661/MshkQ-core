@@ -42,7 +42,7 @@ class InstallMiddleware implements MiddlewareInterface
     {
         Utils::outPut(ResponseCode::NOT_INSTALL);
         /*$status = 500;
-        return DiscuzResponseFactory::JsonResponse([
+        return MshkQResponseFactory::JsonResponse([
             'errors' => [
                 [
                     'status' => $status,

@@ -20,7 +20,7 @@ namespace MshkQ\Api\Controller;
 
 use App\Formatter\BaseFormatter;
 use MshkQ\Api\Events\WillSerializeData;
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use Illuminate\Contracts\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -119,7 +119,7 @@ abstract class AbstractSerializeController implements RequestHandlerInterface
 
         $document->setData($element);
 
-        return DiscuzResponseFactory::JsonApiResponse($document);
+        return MshkQResponseFactory::JsonApiResponse($document);
     }
 
     /**

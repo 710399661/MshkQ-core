@@ -19,7 +19,7 @@
 namespace MshkQ\Http\Middleware;
 
 use MshkQ\Foundation\Application;
-use MshkQ\Http\DiscuzResponseFactory;
+use MshkQ\Http\MshkQResponseFactory;
 use MshkQ\Http\Exception\NotConfig;
 use MshkQ\Http\UrlGenerator;
 use Illuminate\Support\Arr;
@@ -71,7 +71,7 @@ class RequestHandler implements MiddlewareInterface
             }
         }
 
-        return DiscuzResponseFactory::EmptyResponse(500);
+        return MshkQResponseFactory::EmptyResponse(500);
     }
 
     private function getNormalizedPath(ServerRequestInterface $request): ServerRequestInterface

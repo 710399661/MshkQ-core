@@ -20,7 +20,7 @@ namespace MshkQ\Qcloud\Services;
 
 use GuzzleHttp\Client;
 
-class DiscuzCloudService
+class MshkQCloudService
 {
     protected $config;
 
