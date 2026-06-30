@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Auth;
+namespace Discuz\Auth;
 
 use App\Models\User;
-use MshkQ\Api\Events\GetPermission;
+use Discuz\Api\Events\GetPermission;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Support\ServiceProvider;
 use RuntimeException;

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Foundation\Bus;
+namespace Discuz\Foundation\Bus;
 
 class PendingChain
 {

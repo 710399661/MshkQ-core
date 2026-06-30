@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Search;
+namespace Discuz\Search;
 
-use MshkQ\Contracts\Search\Search;
+use Discuz\Contracts\Search\Search;
 use Tobscure\JsonApi\Exception\InvalidParameterException;
 use Tobscure\JsonApi\Parameters;
 

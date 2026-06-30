@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\Controller;
+namespace Discuz\Api\Controller;
 
-use MshkQ\Http\DiscuzResponseFactory;
+use Discuz\Http\DiscuzResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

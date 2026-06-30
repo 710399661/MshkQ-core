@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Auth;
+namespace Discuz\Auth;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Contracts\Container\Container;

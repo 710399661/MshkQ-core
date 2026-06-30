@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Web;
+namespace Discuz\Web;
 
-use MshkQ\Http\Middleware\DispatchRoute;
-use MshkQ\Http\Middleware\HandleErrorsWithView;
-use MshkQ\Http\Middleware\HandleErrorsWithWhoops;
-use MshkQ\Http\RouteCollection;
+use Discuz\Http\Middleware\DispatchRoute;
+use Discuz\Http\Middleware\HandleErrorsWithView;
+use Discuz\Http\Middleware\HandleErrorsWithWhoops;
+use Discuz\Http\RouteCollection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\ViewServiceProvider;
 use Laminas\Stratigility\MiddlewarePipe;

@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http\Middleware;
+namespace Discuz\Http\Middleware;
 
-use MshkQ\Http\Exception\MethodNotAllowedException;
-use MshkQ\Http\Exception\RouteNotFoundException;
-use MshkQ\Http\GroupCountBased;
-use MshkQ\Http\RouteCollection;
-use MshkQ\Http\RouteHandlerFactory;
+use Discuz\Http\Exception\MethodNotAllowedException;
+use Discuz\Http\Exception\RouteNotFoundException;
+use Discuz\Http\GroupCountBased;
+use Discuz\Http\RouteCollection;
+use Discuz\Http\RouteHandlerFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

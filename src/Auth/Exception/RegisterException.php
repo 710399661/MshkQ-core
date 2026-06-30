@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MshkQ\Auth\Exception;
+namespace Discuz\Auth\Exception;
 
 use Exception;
 use Throwable;

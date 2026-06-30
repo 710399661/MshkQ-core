@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Qcloud;
+namespace Discuz\Qcloud;
 
 trait QcloudTrait
 {

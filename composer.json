@@ -1,12 +1,11 @@
 {
-    "name": "mshkq/core",
+    "name": "MshkQ/core",
     "description": "The MshkQ Framework",
     "require": {
         "php": "^8.1",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
-        "dflydev/fig-cookies": "^2.0.0",
         "dragonmantank/cron-expression": "^3.0",
         "guzzlehttp/guzzle": "^7.8",
         "illuminate/bus": "^10.0",

@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Web\Controller;
+namespace Discuz\Web\Controller;
 
-use MshkQ\Foundation\Application;
-use MshkQ\Http\DiscuzResponseFactory;
+use Discuz\Foundation\Application;
+use Discuz\Http\DiscuzResponseFactory;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Factory;
 use Psr\Http\Message\ResponseInterface;

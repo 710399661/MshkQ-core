@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\ExceptionHandler;
+namespace Discuz\Api\ExceptionHandler;
 
 use Exception;
 use TencentCloud\Common\Exception\TencentCloudSDKException;

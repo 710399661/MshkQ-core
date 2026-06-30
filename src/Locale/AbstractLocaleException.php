@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Locale;
+namespace Discuz\Locale;
 
 use Exception;
 
 /**
  * Class AbstractLocaleException
  *
- * @package MshkQ\Locale
+ * @package Discuz\Locale
  */
 abstract class AbstractLocaleException extends Exception
 {

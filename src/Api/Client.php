@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api;
+namespace Discuz\Api;
 
-use MshkQ\Foundation\Application;
+use Discuz\Foundation\Application;
 use Laminas\Diactoros\ServerRequestFactory;
 use Psr\Http\Message\ResponseInterface;
 

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Notifications;
+namespace Discuz\Notifications;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Translation\HasLocalePreference;

@@ -16,15 +16,15 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\ExceptionHandler;
+namespace Discuz\Api\ExceptionHandler;
 
 use App\Common\ResponseCode;
-use MshkQ\Auth\Exception\NotAuthenticatedException;
-use MshkQ\Base\DzqLog;
+use Discuz\Auth\Exception\NotAuthenticatedException;
+use Discuz\Base\DzqLog;
 use Exception;
 use Tobscure\JsonApi\Exception\Handler\ExceptionHandlerInterface;
 use Tobscure\JsonApi\Exception\Handler\ResponseBag;
-use MshkQ\Common\Utils;
+use Discuz\Common\Utils;
 class NotAuthenticatedExceptionHandler implements ExceptionHandlerInterface
 {
     /**

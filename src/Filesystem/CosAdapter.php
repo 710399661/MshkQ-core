@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Filesystem;
+namespace Discuz\Filesystem;
 
 use DateTimeImmutable;
 use GuzzleHttp\Client as HttpClient;

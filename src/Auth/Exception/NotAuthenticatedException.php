@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Auth\Exception;
+namespace Discuz\Auth\Exception;
 
 use Exception;
 use Throwable;

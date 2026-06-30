@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http;
+namespace Discuz\Http;
 
 use Illuminate\Http\File;
 use Illuminate\Support\Arr;

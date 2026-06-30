@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Base;
+namespace Discuz\Base;
 
 use App\Common\ResponseCode;
 use App\Repositories\UserRepository;
 use DateTime;
-use MshkQ\Auth\Exception\PermissionDeniedException;
-use MshkQ\Common\Utils;
-use MshkQ\Contracts\Setting\SettingsRepository;
+use Discuz\Auth\Exception\PermissionDeniedException;
+use Discuz\Common\Utils;
+use Discuz\Contracts\Setting\SettingsRepository;
 use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

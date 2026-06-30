@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http\Middleware;
+namespace Discuz\Http\Middleware;
 
 use App\Common\CacheKey;
 use App\Common\ResponseCode;
 use App\Models\User;
 use App\Passport\Repositories\AccessTokenRepository;
-use MshkQ\Auth\Guest;
-use MshkQ\Common\Utils;
+use Discuz\Auth\Guest;
+use Discuz\Common\Utils;
 use Illuminate\Support\Arr;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\ResourceServer;

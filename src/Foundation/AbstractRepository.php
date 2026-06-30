@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Foundation;
+namespace Discuz\Foundation;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Notifications\Services;
+namespace Discuz\Notifications\Services;
 
 class Wechat extends AbstractDriver
 {

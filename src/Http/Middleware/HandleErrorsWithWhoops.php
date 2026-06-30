@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http\Middleware;
+namespace Discuz\Http\Middleware;
 
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;

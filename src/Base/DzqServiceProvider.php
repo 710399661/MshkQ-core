@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Base;
+namespace Discuz\Base;
 
-use MshkQ\Common\Utils;
+use Discuz\Common\Utils;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 

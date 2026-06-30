@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Contracts\Search;
+namespace Discuz\Contracts\Search;
 
 interface Searcher
 {

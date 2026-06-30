@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Notifications\Channels;
+namespace Discuz\Notifications\Channels;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Str;
@@ -26,7 +26,7 @@ use RuntimeException;
  * 数据库通知 - 频道
  * Class DatabaseChannel
  *
- * @package MshkQ\Notifications\Channels
+ * @package Discuz\Notifications\Channels
  */
 class DatabaseChannel
 {

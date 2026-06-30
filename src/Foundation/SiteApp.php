@@ -16,24 +16,24 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Foundation;
+namespace Discuz\Foundation;
 
 use App\Providers\RedPacketServiceProvider;
-use MshkQ\Api\ApiServiceProvider;
-use MshkQ\Auth\AuthServiceProvider;
-use MshkQ\Base\DzqLog;
-use MshkQ\Cache\CacheServiceProvider;
-use MshkQ\Database\DatabaseServiceProvider;
-use MshkQ\Database\MigrationServiceProvider;
-use MshkQ\Filesystem\FilesystemServiceProvider;
-use MshkQ\Http\HttpServiceProvider;
-use MshkQ\Notifications\NotificationServiceProvider;
-use MshkQ\Qcloud\QcloudServiceProvider;
-use MshkQ\Queue\QueueServiceProvider;
-use MshkQ\Search\SearchServiceProvider;
-use MshkQ\Socialite\SocialiteServiceProvider;
-use MshkQ\Web\WebServiceProvider;
-use MshkQ\Wechat\WechatServiceProvider;
+use Discuz\Api\ApiServiceProvider;
+use Discuz\Auth\AuthServiceProvider;
+use Discuz\Base\DzqLog;
+use Discuz\Cache\CacheServiceProvider;
+use Discuz\Database\DatabaseServiceProvider;
+use Discuz\Database\MigrationServiceProvider;
+use Discuz\Filesystem\FilesystemServiceProvider;
+use Discuz\Http\HttpServiceProvider;
+use Discuz\Notifications\NotificationServiceProvider;
+use Discuz\Qcloud\QcloudServiceProvider;
+use Discuz\Queue\QueueServiceProvider;
+use Discuz\Search\SearchServiceProvider;
+use Discuz\Socialite\SocialiteServiceProvider;
+use Discuz\Web\WebServiceProvider;
+use Discuz\Wechat\WechatServiceProvider;
 use Illuminate\Bus\BusServiceProvider;
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Encryption\EncryptionServiceProvider;

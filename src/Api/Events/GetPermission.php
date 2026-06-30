@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\Events;
+namespace Discuz\Api\Events;
 
 use App\Models\User;
 

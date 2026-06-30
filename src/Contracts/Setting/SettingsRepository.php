@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Contracts\Setting;
+namespace Discuz\Contracts\Setting;
 
 interface SettingsRepository
 {

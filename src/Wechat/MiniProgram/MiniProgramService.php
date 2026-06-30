@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Wechat\MiniProgram;
+namespace Discuz\Wechat\MiniProgram;
 
-use MshkQ\Contracts\Setting\SettingsRepository;
-use MshkQ\Wechat\AppCache;
+use Discuz\Contracts\Setting\SettingsRepository;
+use Discuz\Wechat\AppCache;
 
 class MiniProgramService
 {

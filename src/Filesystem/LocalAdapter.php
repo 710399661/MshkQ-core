@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Filesystem;
+namespace Discuz\Filesystem;
 
-use MshkQ\Http\UrlGenerator;
+use Discuz\Http\UrlGenerator;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 
 /**
  * Class LocalAdapter
- * @package MshkQ\Filesystem
+ * @package Discuz\Filesystem
  */
 class LocalAdapter extends LocalFilesystemAdapter
 {

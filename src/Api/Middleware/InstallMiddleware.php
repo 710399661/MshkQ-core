@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\Middleware;
+namespace Discuz\Api\Middleware;
 
 use App\Common\ResponseCode;
-use MshkQ\Common\Utils;
+use Discuz\Common\Utils;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Base;
+namespace Discuz\Base;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;

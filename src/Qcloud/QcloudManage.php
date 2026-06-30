@@ -16,21 +16,21 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Qcloud;
+namespace Discuz\Qcloud;
 
-use MshkQ\Contracts\Qcloud\Factory;
-use MshkQ\Contracts\Setting\SettingsRepository;
-use MshkQ\Qcloud\Services\BillingService;
-use MshkQ\Qcloud\Services\CaptchaService;
-use MshkQ\Qcloud\Services\CmsService;
-use MshkQ\Qcloud\Services\DiscuzCloudService;
-use MshkQ\Qcloud\Services\FaceidService;
-use MshkQ\Qcloud\Services\ImsService;
-use MshkQ\Qcloud\Services\SmsService;
-use MshkQ\Qcloud\Services\TmsService;
-use MshkQ\Qcloud\Services\VodService;
-use MshkQ\Qcloud\Services\YunsouService;
-use MshkQ\Qcloud\Services\MsService;
+use Discuz\Contracts\Qcloud\Factory;
+use Discuz\Contracts\Setting\SettingsRepository;
+use Discuz\Qcloud\Services\BillingService;
+use Discuz\Qcloud\Services\CaptchaService;
+use Discuz\Qcloud\Services\CmsService;
+use Discuz\Qcloud\Services\DiscuzCloudService;
+use Discuz\Qcloud\Services\FaceidService;
+use Discuz\Qcloud\Services\ImsService;
+use Discuz\Qcloud\Services\SmsService;
+use Discuz\Qcloud\Services\TmsService;
+use Discuz\Qcloud\Services\VodService;
+use Discuz\Qcloud\Services\YunsouService;
+use Discuz\Qcloud\Services\MsService;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Manager;
 use InvalidArgumentException;

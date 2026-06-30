@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Console;
+namespace Discuz\Console;
 
 use Illuminate\Console\Parser;
 use Symfony\Component\Console\Command\Command;

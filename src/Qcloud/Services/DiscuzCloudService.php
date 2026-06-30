@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Qcloud\Services;
+namespace Discuz\Qcloud\Services;
 
 use GuzzleHttp\Client;
 

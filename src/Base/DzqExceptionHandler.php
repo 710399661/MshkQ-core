@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Base;
+namespace Discuz\Base;
 
 use Throwable;
 
@@ -24,6 +24,6 @@ class DzqExceptionHandler
     public function handle(Throwable $e)
     {
         // Exception handling is delegated to individual ExceptionHandler implementations
-        // registered via MshkQ\Api\ExceptionHandler. This class serves as a placeholder.
+        // registered via Discuz\Api\ExceptionHandler. This class serves as a placeholder.
     }
 }

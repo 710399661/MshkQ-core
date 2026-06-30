@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Socialite\Two;
+namespace Discuz\Socialite\Two;
 
-use MshkQ\Contracts\Socialite\Provider as ProviderInterface;
-use MshkQ\Http\DiscuzResponseFactory;
-use MshkQ\Socialite\Exception\InvalidStateException;
-use MshkQ\Socialite\Exception\SocialiteException;
+use Discuz\Contracts\Socialite\Provider as ProviderInterface;
+use Discuz\Http\DiscuzResponseFactory;
+use Discuz\Socialite\Exception\InvalidStateException;
+use Discuz\Socialite\Exception\SocialiteException;
 
 class QQProvider extends AbstractProvider implements ProviderInterface
 {

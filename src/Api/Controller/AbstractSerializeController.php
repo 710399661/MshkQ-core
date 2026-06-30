@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\Controller;
+namespace Discuz\Api\Controller;
 
 use App\Formatter\BaseFormatter;
-use MshkQ\Api\Events\WillSerializeData;
-use MshkQ\Http\DiscuzResponseFactory;
+use Discuz\Api\Events\WillSerializeData;
+use Discuz\Http\DiscuzResponseFactory;
 use Illuminate\Contracts\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

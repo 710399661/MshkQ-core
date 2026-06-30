@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Foundation;
+namespace Discuz\Foundation;
 
 trait EventGeneratorTrait
 {
