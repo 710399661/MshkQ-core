@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Auth;
+namespace Discuz\Auth;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Contracts\Container\Container;
@@ -121,7 +121,7 @@ class Gate implements GateContract
     protected function buildAbilityCallback($callback)
     {
         return function () use ($callback) {
-            [$class, $method] = explode('@', $callback);
+            list($class, $method) = explode('@', $callback);
 
             return call_user_func_array([$this->resolvePolicy($class), $method], func_get_args());
         };
@@ -427,7 +427,7 @@ class Gate implements GateContract
      * @param array|null $abilities
      * @return GateContract
      */
-    public function resource($name, $class, array $abilities = null)
+    public function resource($name, $class, ?array $abilities = null)
     {
         // TODO: Implement resource() method.
     }

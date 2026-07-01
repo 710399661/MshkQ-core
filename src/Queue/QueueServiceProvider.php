@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Queue;
+namespace Discuz\Queue;
 
-use MshkQ\Console\Event\Configuring;
+use Discuz\Console\Event\Configuring;
 use Illuminate\Contracts\Debug\ExceptionHandler as ContractsExceptionHandler;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Queue\Connectors\RedisConnector;
@@ -27,10 +27,10 @@ use Illuminate\Queue\QueueManager;
 use Illuminate\Queue\Worker;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-// opis/closure 4.x: SerializableClosure no longer needs setSecretKey
+use Opis\Closure\SerializableClosure;
 use Illuminate\Queue\Console;
 use Illuminate\Queue\Listener as QueueListener;
-use MshkQ\Foundation\ExceptionHandler;
+use Discuz\Foundation\ExceptionHandler;
 
 class QueueServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -173,7 +173,10 @@ class QueueServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     protected function registerOpisSecurityKey()
     {
-        // opis/closure 4.x handles serialization internally, no secret key needed
+        if (Str::startsWith($key = $this->app->config('key'), 'base64:')) {
+            $key = base64_decode(substr($key, 7));
+        }
+        SerializableClosure::setSecretKey($key);
     }
 
     protected function registerCommands()

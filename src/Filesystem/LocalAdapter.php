@@ -16,35 +16,129 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Filesystem;
+namespace Discuz\Filesystem;
 
-use MshkQ\Http\UrlGenerator;
+use Discuz\Http\UrlGenerator;
 use League\Flysystem\Local\LocalFilesystemAdapter;
+use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\Config;
+use League\Flysystem\FileAttributes;
+use League\Flysystem\DirectoryAttributes;
+use League\Flysystem\PathPrefixer;
 
-/**
- * Class LocalAdapter
- * @package MshkQ\Filesystem
- */
-class LocalAdapter extends LocalFilesystemAdapter
+class LocalAdapter implements FilesystemAdapter
 {
-    protected array $config;
+    protected $config;
 
-    protected UrlGenerator $url;
+    protected $url;
+
+    protected $adapter;
+
+    protected $prefixer;
 
     public function __construct(array $config = [])
     {
         $this->config = $config;
 
-        parent::__construct($this->config['root']);
+        $this->adapter = new LocalFilesystemAdapter($this->config['root']);
+
+        $this->prefixer = new PathPrefixer('');
 
         $this->url = app(UrlGenerator::class);
     }
 
-    /**
-     * 获取本地图片/附件 URL 地址
-     */
-    public function getUrl(string $path): string
+    public function fileExists(string $path): bool
+    {
+        return $this->adapter->fileExists($path);
+    }
+
+    public function directoryExists(string $path): bool
+    {
+        return $this->adapter->directoryExists($path);
+    }
+
+    public function write(string $path, string $contents, Config $config): void
+    {
+        $this->adapter->write($path, $contents, $config);
+    }
+
+    public function writeStream(string $path, $contents, Config $config): void
+    {
+        $this->adapter->writeStream($path, $contents, $config);
+    }
+
+    public function read(string $path): string
+    {
+        return $this->adapter->read($path);
+    }
+
+    public function readStream(string $path)
+    {
+        return $this->adapter->readStream($path);
+    }
+
+    public function delete(string $path): void
+    {
+        $this->adapter->delete($path);
+    }
+
+    public function deleteDirectory(string $path): void
+    {
+        $this->adapter->deleteDirectory($path);
+    }
+
+    public function createDirectory(string $path, Config $config): void
+    {
+        $this->adapter->createDirectory($path, $config);
+    }
+
+    public function setVisibility(string $path, string $visibility): void
+    {
+        $this->adapter->setVisibility($path, $visibility);
+    }
+
+    public function visibility(string $path): FileAttributes
+    {
+        return $this->adapter->visibility($path);
+    }
+
+    public function mimeType(string $path): FileAttributes
+    {
+        return $this->adapter->mimeType($path);
+    }
+
+    public function lastModified(string $path): FileAttributes
+    {
+        return $this->adapter->lastModified($path);
+    }
+
+    public function fileSize(string $path): FileAttributes
+    {
+        return $this->adapter->fileSize($path);
+    }
+
+    public function listContents(string $path, bool $deep): iterable
+    {
+        return $this->adapter->listContents($path, $deep);
+    }
+
+    public function move(string $source, string $destination, Config $config): void
+    {
+        $this->adapter->move($source, $destination, $config);
+    }
+
+    public function copy(string $source, string $destination, Config $config): void
+    {
+        $this->adapter->copy($source, $destination, $config);
+    }
+
+    public function getUrl($path)
     {
         return $this->url->to(str_replace('public', '/storage', $path));
+    }
+
+    public function getAdapter()
+    {
+        return $this->adapter;
     }
 }

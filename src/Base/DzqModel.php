@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Base;
+namespace Discuz\Base;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
@@ -29,7 +29,8 @@ abstract class DzqModel extends Model
         parent::__construct($attributes);
     }
 
-    private static $instance;
+    /** @var array<string, static> 单例实例数组 */
+    private static array $instance = [];
 
     public static function instance()
     {

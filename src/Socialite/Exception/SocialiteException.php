@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Socialite\Exception;
+namespace Discuz\Socialite\Exception;
 
 use Exception;
 

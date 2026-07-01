@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\Listeners;
+namespace Discuz\Api\Listeners;
 
-use MshkQ\Api\Events\ApiExceptionRegisterHandler;
-use MshkQ\Foundation\Application;
+use Discuz\Api\Events\ApiExceptionRegisterHandler;
+use Discuz\Foundation\Application;
 use Illuminate\Support\Str;
 use ReflectionClass;
 use SplFileInfo;
@@ -72,9 +72,7 @@ class AutoResisterApiExceptionRegisterHandler
      */
     protected function classFromFile(SplFileInfo $file, $basePath)
     {
-        $realPath = $file->getRealPath();
-        $basePath = realpath($basePath) ?: $basePath;
-        $class = trim(Str::replaceFirst($basePath, '', $realPath), DIRECTORY_SEPARATOR);
+        $class = trim(Str::replaceFirst($basePath, '', $file->getRealPath()), DIRECTORY_SEPARATOR);
 
         return str_replace(
             [DIRECTORY_SEPARATOR, ucfirst(basename(app()->path())).'\\'],

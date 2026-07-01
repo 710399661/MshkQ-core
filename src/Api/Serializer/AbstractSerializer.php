@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\Serializer;
+namespace Discuz\Api\Serializer;
 
 use App\Models\User;
 use Closure;
 use DateTime;
-use MshkQ\Api\Events\Serializing;
+use Discuz\Api\Events\Serializing;
 use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use MshkQ\JsonApi\AbstractSerializer as BaseAbstractSerializer;
 use MshkQ\JsonApi\Collection;
 use MshkQ\JsonApi\Relationship;
 use MshkQ\JsonApi\Resource;
-use MshkQ\JsonApi\SerializerInterface;
+use MshkQ\JsonApi\Contracts\SerializerInterface;
 
 abstract class AbstractSerializer extends BaseAbstractSerializer
 {
@@ -70,7 +70,7 @@ abstract class AbstractSerializer extends BaseAbstractSerializer
     /**
      * {@inheritdoc}
      */
-    public function getAttributes($model, array $fields = null)
+    public function getAttributes($model, ?array $fields = null)
     {
         if (! is_object($model) && ! is_array($model)) {
             return [];
@@ -140,7 +140,7 @@ abstract class AbstractSerializer extends BaseAbstractSerializer
     protected function buildRelationship($model, $serializer, $relation = null, $many = false)
     {
         if (is_null($relation)) {
-            [, , $caller] = debug_backtrace(false, 3);
+            list(, , $caller) = debug_backtrace(false, 3);
 
             $relation = $caller['function'];
         }

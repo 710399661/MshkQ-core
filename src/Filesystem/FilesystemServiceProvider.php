@@ -16,10 +16,11 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Filesystem;
+namespace Discuz\Filesystem;
 
-use MshkQ\Contracts\Setting\SettingsRepository;
+use Discuz\Contracts\Setting\SettingsRepository;
 use GuzzleHttp\Client;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Filesystem\FilesystemServiceProvider as ServiceProvider;
 use Illuminate\Support\Arr;
 use League\Flysystem\Filesystem;
@@ -32,7 +33,8 @@ class FilesystemServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->make('filesystem')->extend('local', function ($app, $config) {
-            return new Filesystem(new LocalAdapter($config));
+            $adapter = new LocalAdapter($config);
+            return new FilesystemAdapter(new Filesystem($adapter), $adapter, $config);
         });
 
         $this->app->make('filesystem')->extend('cos', function ($app, $config) {
@@ -60,7 +62,8 @@ class FilesystemServiceProvider extends ServiceProvider
                 'token' => Arr::get($qcloud, 'qcloud_token', '')
             ];
 
-            return new Filesystem(new CosAdapter($config));
+            $adapter = new CosAdapter($config);
+            return new FilesystemAdapter(new Filesystem($adapter), $adapter, $config);
         });
     }
 

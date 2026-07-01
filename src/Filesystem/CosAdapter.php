@@ -16,79 +16,80 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Filesystem;
+namespace Discuz\Filesystem;
 
-use DateTimeImmutable;
+use Exception;
 use GuzzleHttp\Client as HttpClient;
-use League\Flysystem\FileAttributes;
-use League\Flysystem\FilesystemAdapter;
-use League\Flysystem\PathAttributes;
 use Illuminate\Support\Arr;
-use League\Flysystem\StorageAttributes;
+use League\Flysystem\FileAttributes;
+use League\Flysystem\DirectoryAttributes;
+use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\Config;
 use Qcloud\Cos\Client;
+use Throwable;
 
-/**
- * Class CosAdapter.
- * Tencent COS adapter for Flysystem 3.x
- */
 class CosAdapter implements FilesystemAdapter
 {
-    protected ?Client $client = null;
+    protected $client;
 
-    protected ?HttpClient $httpClient = null;
+    protected $httpClient;
 
-    protected array $config;
+    protected $config;
 
     public function __construct(array $config = [])
     {
         $this->config = $config;
     }
 
-    public function getBucket(): string
+    public function getBucket()
     {
         return $this->config['bucket'];
     }
 
-    public function getAppId(): ?string
+    public function getAppId()
     {
         return $this->config['credentials']['appId'] ?? null;
     }
 
-    public function getRegion(): string
+    public function getRegion()
     {
         return $this->config['region'] ?? '';
     }
 
-    public function getSourcePath(string $path): string
+    public function getSourcePath($path)
     {
-        $schema = ($this->config['schema'] ?? 'https') . '://';
-        return sprintf(
-            '%s%s.cos.%s.myqcloud.com/%s',
-            $schema,
+        $schema = $this->config['schema'] ?  $this->config['schema'] . '://' : 'https://';
+        return  sprintf(
+            $schema . '%s.cos.%s.myqcloud.com/%s',
             $this->getBucket(),
             $this->getRegion(),
             $path
         );
     }
 
-    public function getUrl(string $path): string
+    public function getUrl($path)
     {
         if (!empty($this->config['cdn'])) {
             return rtrim($this->config['cdn'], '/') . '/' . ltrim($path, '/');
         }
 
+        $options = [
+            'Schema' => $this->config['schema'] ?? 'https',
+        ];
+
         return $this->getClient()->getObjectUrl(
             $this->getBucket(),
             $path,
             null,
-            ['Schema' => $this->config['schema'] ?? 'https']
+            $options
         );
     }
 
-    public function getTemporaryUrl(string $path, DateTimeInterface $expiresAt, array $config = []): string
+    public function getTemporaryUrl($path, $expiration, array $options = [])
     {
-        $options = ['Schema' => $this->config['schema'] ?? 'https'];
-        $expiration = date('c', $expiresAt->getTimestamp());
+        $options = array_merge($options, ['Schema' => $this->config['schema'] ?? 'https']);
+
+        $expiration = date('c', !\is_numeric($expiration) ? \strtotime($expiration) : \intval($expiration));
 
         $objectUrl = $this->getClient()->getObjectUrl(
             $this->getBucket(),
@@ -100,10 +101,10 @@ class CosAdapter implements FilesystemAdapter
         $url = parse_url($objectUrl);
 
         if (!empty($this->config['cdn'])) {
-            return sprintf(
+            return \sprintf(
                 '%s/%s?%s',
-                rtrim($this->config['cdn'], '/'),
-                ltrim(urldecode($url['path']), '/'),
+                \rtrim($this->config['cdn'], '/'),
+                \ltrim(urldecode($url['path']), '/'),
                 $url['query']
             );
         }
@@ -111,46 +112,64 @@ class CosAdapter implements FilesystemAdapter
         return $objectUrl;
     }
 
-    public function write(string $path, string $contents, array $config = []): FileAttributes
+    public function write(string $path, string $contents, Config $config): void
     {
         $options = $this->getUploadOptions($config);
-        $this->getClient()->upload($this->getBucket(), $path, $contents, $options);
 
-        return new FileAttributes($path, strlen($contents));
+        $this->getClient()->upload($this->getBucket(), $path, $contents, $options);
     }
 
-    public function writeStream(string $path, $contents, array $config = []): FileAttributes
+    public function writeStream(string $path, $contents, Config $config): void
     {
         $options = $this->getUploadOptions($config);
-        $content = stream_get_contents($contents, -1, 0);
-        $this->getClient()->upload($this->getBucket(), $path, $content, $options);
 
-        return new FileAttributes($path, strlen($content));
+        $this->getClient()->upload(
+            $this->getBucket(),
+            $path,
+            stream_get_contents($contents, -1, 0),
+            $options
+        );
     }
 
     public function read(string $path): string
     {
-        if (Arr::get($this->config, 'read_from_cdn')) {
-            return $this->getHttpClient()
-                ->get($this->getTemporaryUrl($path, new DateTimeImmutable('+5 minutes')))
-                ->getBody()
-                ->getContents();
-        }
+        try {
+            if (Arr::get($this->config, 'read_from_cdn')) {
+                $response = $this->getHttpClient()
+                    ->get($this->getTemporaryUrl($path, date('+5 min')))
+                    ->getBody()
+                    ->getContents();
+            } else {
+                $response = $this->getClient()->getObject([
+                    'Bucket' => $this->getBucket(),
+                    'Key' => $path,
+                ])['Body'];
+            }
 
-        return (string) $this->getClient()->getObject([
-            'Bucket' => $this->getBucket(),
-            'Key' => $path,
-        ])['Body'];
+            return (string) $response;
+        } catch (Throwable $e) {
+            throw new \League\Flysystem\UnableToReadFile($e->getMessage(), $path, $e);
+        } catch (Exception $e) {
+            throw new \League\Flysystem\UnableToReadFile($e->getMessage(), $path, $e);
+        }
     }
 
     public function readStream(string $path)
     {
-        $temporaryUrl = $this->getTemporaryUrl($path, new DateTimeImmutable('+5 minutes'));
+        try {
+            $temporaryUrl = $this->getTemporaryUrl($path, \strtotime('+5 min'));
 
-        return $this->getHttpClient()
-            ->get($temporaryUrl, ['stream' => true])
-            ->getBody()
-            ->detach();
+            $stream = $this->getHttpClient()
+                ->get($temporaryUrl, ['stream' => true])
+                ->getBody()
+                ->detach();
+
+            return $stream;
+        } catch (\Throwable $e) {
+            throw new \League\Flysystem\UnableToReadFile($e->getMessage(), $path, $e);
+        } catch (Exception $e) {
+            throw new \League\Flysystem\UnableToReadFile($e->getMessage(), $path, $e);
+        }
     }
 
     public function delete(string $path): void
@@ -179,93 +198,22 @@ class CosAdapter implements FilesystemAdapter
         ]);
     }
 
-    public function createDirectory(string $path, array $config = []): void
+    public function createDirectory(string $path, Config $config): void
     {
         $this->getClient()->putObject([
             'Bucket' => $this->getBucket(),
-            'Key' => $path . '/',
+            'Key' => $path.'/',
             'Body' => '',
         ]);
     }
 
-    public function setVisibility(string $path, string $visibility): FileAttributes
+    public function setVisibility(string $path, string $visibility): void
     {
-        $acl = $visibility === 'public' ? 'public-read' : $visibility;
-
-        $this->getClient()->putObjectAcl([
+        $this->getClient()->PutObjectAcl([
             'Bucket' => $this->getBucket(),
             'Key' => $path,
-            'ACL' => $acl,
+            'ACL' => $this->normalizeVisibility($visibility),
         ]);
-
-        return new FileAttributes($path, null, $visibility);
-    }
-
-    public function fileExists(string $path): bool
-    {
-        try {
-            $this->getClient()->headObject([
-                'Bucket' => $this->getBucket(),
-                'Key' => $path,
-            ]);
-            return true;
-        } catch (\Throwable $e) {
-            return false;
-        }
-    }
-
-    public function directoryExists(string $path): bool
-    {
-        try {
-            $response = $this->listObjects($path);
-            return !empty($response['Contents']);
-        } catch (\Throwable $e) {
-            return false;
-        }
-    }
-
-    public function mimeType(string $path): FileAttributes
-    {
-        $meta = $this->getClient()->headObject([
-            'Bucket' => $this->getBucket(),
-            'Key' => $path,
-        ]);
-
-        return new FileAttributes(
-            $path,
-            null,
-            null,
-            null,
-            $meta['ContentType'] ?? null
-        );
-    }
-
-    public function lastModified(string $path): FileAttributes
-    {
-        $meta = $this->getClient()->headObject([
-            'Bucket' => $this->getBucket(),
-            'Key' => $path,
-        ]);
-
-        return new FileAttributes(
-            $path,
-            null,
-            null,
-            isset($meta['LastModified']) ? strtotime($meta['LastModified']) : null
-        );
-    }
-
-    public function fileSize(string $path): FileAttributes
-    {
-        $meta = $this->getClient()->headObject([
-            'Bucket' => $this->getBucket(),
-            'Key' => $path,
-        ]);
-
-        return new FileAttributes(
-            $path,
-            $meta['ContentLength'] ?? null
-        );
     }
 
     public function visibility(string $path): FileAttributes
@@ -275,12 +223,11 @@ class CosAdapter implements FilesystemAdapter
             'Key' => $path,
         ]);
 
-        $visibility = 'private';
+        $visibility = \League\Flysystem\Visibility::PRIVATE;
+
         foreach ($meta['Grants'] as $grant) {
-            if ($grant['Grant']['Permission'] === 'READ'
-                && strpos($grant['Grantee']['URI'] ?? '', 'global/AllUsers') !== false
-            ) {
-                $visibility = 'public';
+            if ('READ' === $grant['Grant']['Permission'] && false !== strpos($grant['Grantee']['URI'] ?? '', 'global/AllUsers')) {
+                $visibility = \League\Flysystem\Visibility::PUBLIC;
                 break;
             }
         }
@@ -288,88 +235,163 @@ class CosAdapter implements FilesystemAdapter
         return new FileAttributes($path, null, $visibility);
     }
 
-    public function listContents(string $path = '', bool $deep = false): iterable
+    public function fileExists(string $path): bool
     {
-        $response = $this->listObjects($path, $deep);
-
-        foreach ((array) ($response['Contents'] ?? []) as $content) {
-            $isDir = substr($content['Key'], -1) === '/';
-            yield from [$this->normalizeFileInfo($content, $isDir)];
+        try {
+            return (bool) $this->getMetadata($path);
+        } catch (\Throwable $e) {
+            return false;
+        } catch (Exception $e) {
+            return false;
         }
     }
 
-    public function move(string $source, string $destination, array $config = []): void
+    public function directoryExists(string $path): bool
     {
-        $this->copy($source, $destination);
+        return $this->fileExists(rtrim($path, '/') . '/');
+    }
+
+    public function mimeType(string $path): FileAttributes
+    {
+        $meta = $this->getMetadata($path);
+
+        $mimeType = isset($meta['ContentType']) ? $meta['ContentType'] : null;
+
+        return new FileAttributes($path, null, null, null, $mimeType);
+    }
+
+    public function lastModified(string $path): FileAttributes
+    {
+        $meta = $this->getMetadata($path);
+
+        $lastModified = isset($meta['LastModified']) ? strtotime($meta['LastModified']) : null;
+
+        return new FileAttributes($path, null, null, $lastModified);
+    }
+
+    public function fileSize(string $path): FileAttributes
+    {
+        $meta = $this->getMetadata($path);
+
+        $size = isset($meta['ContentLength']) ? intval($meta['ContentLength']) : null;
+
+        return new FileAttributes($path, $size);
+    }
+
+    public function listContents(string $path, bool $deep): iterable
+    {
+        $list = [];
+
+        $response = $this->listObjects($path, $deep);
+
+        foreach ((array) $response['Contents'] as $content) {
+            $list[] = $this->normalizeFileInfo($content);
+        }
+
+        return $list;
+    }
+
+    public function move(string $source, string $destination, Config $config): void
+    {
+        $this->copy($source, $destination, $config);
+
         $this->delete($source);
     }
 
-    public function copy(string $source, string $destination): void
+    public function copy(string $source, string $destination, Config $config): void
     {
-        $this->getClient()->copy(
-            $this->getBucket(),
-            $destination,
-            ['Bucket' => $this->getBucket(), 'Key' => $source]
+        $cosSource = [
+            'Region' => $this->getRegion(),
+            'Bucket' => $this->getBucket(),
+            'Key' => $source,
+        ];
+
+        $this->getClient()->copy($this->getBucket(), $destination, $cosSource);
+    }
+
+    public function getClient()
+    {
+        return $this->client ?: $this->client = new Client($this->config);
+    }
+
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getHttpClient()
+    {
+        return $this->httpClient ?: $this->httpClient = new HttpClient();
+    }
+
+    public function setHttpClient(HttpClient $client)
+    {
+        $this->httpClient = $client;
+
+        return $this;
+    }
+
+    protected function getMetadata($path)
+    {
+        return $this->getClient()->headObject([
+            'Bucket' => $this->getBucket(),
+            'Key' => $path,
+        ]);
+    }
+
+    protected function normalizeFileInfo(array $content)
+    {
+        $path = $content['Key'];
+        $isDir = substr($path, -1) === '/';
+
+        if ($isDir) {
+            return new DirectoryAttributes(rtrim($path, '/'));
+        }
+
+        return new FileAttributes(
+            $path,
+            intval($content['Size']),
+            null,
+            strtotime($content['LastModified'])
         );
     }
 
-    public function getClient(): Client
-    {
-        return $this->client ??= new Client($this->config);
-    }
-
-    public function setClient(Client $client): static
-    {
-        $this->client = $client;
-        return $this;
-    }
-
-    public function getHttpClient(): HttpClient
-    {
-        return $this->httpClient ??= new HttpClient();
-    }
-
-    public function setHttpClient(HttpClient $client): static
-    {
-        $this->httpClient = $client;
-        return $this;
-    }
-
-    protected function normalizeFileInfo(array $content, bool $isDir): StorageAttributes
-    {
-        $path = $content['Key'];
-        $size = (int) ($content['Size'] ?? 0);
-        $timestamp = strtotime($content['LastModified'] ?? 'now');
-
-        if ($isDir) {
-            return new PathAttributes($path, $timestamp);
-        }
-
-        return new FileAttributes($path, $size, null, $timestamp);
-    }
-
-    protected function listObjects(string $directory = '', bool $recursive = false): array
+    protected function listObjects($directory = '', $recursive = false)
     {
         return $this->getClient()->listObjects([
             'Bucket' => $this->getBucket(),
-            'Prefix' => $directory === '' ? '' : ($directory . '/'),
+            'Prefix' => ('' === (string) $directory) ? '' : ($directory.'/'),
             'Delimiter' => $recursive ? '' : '/',
         ]);
     }
 
-    protected function getUploadOptions(array $config): array
+    protected function getUploadOptions(Config $config)
     {
         $options = [];
-        if (isset($config['header'])) {
-            $options += $config['header'];
+
+        if ($config->has('header')) {
+            $options += $config->get('header');
         }
-        if (isset($config['params'])) {
-            $options['params'] = $config['params'];
+        if ($config->has('params')) {
+            $options['params'] = $config->get('params');
         }
-        if (isset($config['visibility'])) {
-            $acl = $config['visibility'] === 'public' ? 'public-read' : $config['visibility'];
-            $options['params']['ACL'] = $acl;
+        if ($config->has('visibility')) {
+            $options['params']['ACL'] = $this->normalizeVisibility($config->get('visibility'));
         }
+
         return $options;
+    }
+
+    protected function normalizeVisibility($visibility)
+    {
+        switch ($visibility) {
+            case \League\Flysystem\Visibility::PUBLIC:
+                $visibility = 'public-read';
+                break;
+        }
+
+        return $visibility;
     }
 }

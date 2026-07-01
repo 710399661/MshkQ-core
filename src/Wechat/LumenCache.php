@@ -16,44 +16,48 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Wechat;
+namespace Discuz\Wechat;
 use App\Common\CacheKey;
 use Psr\SimpleCache\CacheInterface;
 
-class AppCache implements CacheInterface
+class LumenCache implements CacheInterface
 {
-    public function get($key, $default = null)
+    public function get(string $key, ?mixed $default = null): mixed
     {
         return app('cache')->get($key);
     }
 
-    public function set($key, $value, $ttl = null)
+    public function set(string $key, mixed $value, null|int|\DateInterval $ttl = null): bool
     {
         return app('cache')->put($key, $value, $ttl);
     }
 
-    public function delete($key)
+    public function delete(string $key): bool
     {
         return app('cache')->forget($key);
     }
 
-    public function clear()
+    public function clear(): bool
     {
+        return false;
     }
 
-    public function getMultiple($keys, $default = null)
+    public function getMultiple(iterable $keys, ?mixed $default = null): iterable
     {
+        return [];
     }
 
-    public function setMultiple($values, $ttl = null)
+    public function setMultiple(iterable $values, null|int|\DateInterval $ttl = null): bool
     {
+        return false;
     }
 
-    public function deleteMultiple($keys)
+    public function deleteMultiple(iterable $keys): bool
     {
+        return false;
     }
 
-    public function has($key)
+    public function has(string $key): bool
     {
         return app('cache')->has($key);
     }

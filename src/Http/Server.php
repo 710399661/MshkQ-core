@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http;
+namespace Discuz\Http;
 
-use MshkQ\Common\Utils;
-use MshkQ\Foundation\Application;
-use MshkQ\Foundation\SiteApp;
-use MshkQ\Http\Middleware\RequestHandler;
+use Discuz\Common\Utils;
+use Discuz\Foundation\Application;
+use Discuz\Foundation\SiteApp;
+use Discuz\Http\Middleware\RequestHandler;
 use Illuminate\Database\QueryException;
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\ServerRequest;
@@ -49,25 +49,15 @@ class Server extends SiteApp
         $pipe = new MiddlewarePipe();
 
         $pipe->pipe(new RequestHandler([
-            '/plugin'=>'MshkQ.api.middleware',
-            '/api' => 'MshkQ.api.middleware',
-            '/' => 'MshkQ.web.middleware'
+            '/plugin'=>'discuz.api.middleware',
+            '/api' => 'discuz.api.middleware',
+            '/' => 'discuz.web.middleware'
         ], $this->app));
 
         $request = ServerRequestFactory::fromGlobals();
 
         $this->app->instance('request', $request);
         $this->app->alias('request', ServerRequestInterface::class);
-
-        // 清空输出缓冲区，防止 SapiEmitter 的 assertNoPreviousOutput 抛异常
-        while (ob_get_level() > 0) {
-            ob_end_clean();
-        }
-
-        // 清空输出缓冲区，防止 SapiEmitter 的 assertNoPreviousOutput 抛异常
-        while (ob_get_level() > 0) {
-            ob_end_clean();
-        }
 
         $runner = new RequestHandlerRunner(
             $pipe,
@@ -76,19 +66,15 @@ class Server extends SiteApp
                 return $request;
             },
             function (Throwable $e) {
-                @file_put_contents('/tmp/MshkQ-error.log', date('Y-m-d H:i:s') . " RUNNER_ERROR: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n", FILE_APPEND);
-                $response = new Response();
-                $response->getBody()->write(json_encode([
-                    'code' => '500',
-                    'message' => $e->getMessage(),
-                    'file' => $e->getFile(),
-                    'line' => $e->getLine(),
-                ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
-                return $response->withStatus(500)->withHeader('Content-Type', 'application/json');
+                $generator = new ErrorResponseGenerator;
+                return $generator($e, new ServerRequest(), new Response());
             }
         );
 
         $runner->run();
+
+        //增加性能日志
+        //$this->addPerformanceLog();
     }
     /**
      * @desc 一次性加载所有插件的路由文件
@@ -116,9 +102,13 @@ class Server extends SiteApp
 
     private function isDebug()
     {
-        // 保持错误报告关闭，防止警告输出破坏 HTTP 响应
-        error_reporting(0);
-        ini_set('display_errors', '0');
+        if (app()->config('debug')) {//dev
+            error_reporting(E_ALL);
+            ini_set('display_errors', 'On');
+        } else {//prod
+            error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+            ini_set('display_errors', 'Off');
+        }
     }
 
     /**
@@ -135,7 +125,7 @@ class Server extends SiteApp
         $this->app->make('log')->error($error);
         $trace = $error->getTraceAsString();
         return <<<ERROR
-            MshkQ Q! encountered a boot error ($type)<br />
+            Discuz Q! encountered a boot error ($type)<br />
             thrown in <b>$file</b> on line <b>$line</b><br/>
             <b>$message</b><br/>$trace
 
@@ -147,7 +137,7 @@ ERROR;
         $this->app->make('performancelog')->info(json_encode([
             'app_version' => Application::VERSION,
             'opcache_enable' => function_exists('opcache_get_status') ? opcache_get_status(true) : false,
-            'response_time' => microtime(true) - MshkQ_START.'s',
+            'response_time' => microtime(true) - DISCUZ_START.'s',
             'include_files' => count(get_included_files()),
             'memory_use' => $this->memory_usage(),
             'api_path' => $this->app->make('request')->getUri()->getPath(),

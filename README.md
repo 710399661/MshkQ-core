@@ -1,2 +1,2 @@
 # framework
-MshkQ core
+mshkq core

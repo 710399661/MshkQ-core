@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Search;
+namespace Discuz\Search;
 
 use Exception;
 

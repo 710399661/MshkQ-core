@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http;
+namespace Discuz\Http;
 
 
 class GroupCountBased extends RegexBasedAbstract
 {
     public function __construct($data)
     {
-        [$this->staticRouteMap, $this->variableRouteData] = $data;
+        list($this->staticRouteMap, $this->variableRouteData) = $data;
     }
 
     protected function dispatchVariableRoute($routeData, $uri)
@@ -32,7 +32,7 @@ class GroupCountBased extends RegexBasedAbstract
                 continue;
             }
 
-            [$handler, $varNames] = $data['routeMap'][count($matches)];
+            list($handler, $varNames) = $data['routeMap'][count($matches)];
 
             $vars = [];
             $i = 0;

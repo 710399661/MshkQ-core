@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Wechat\MiniProgram;
+namespace Discuz\Wechat\MiniProgram;
 
-use MshkQ\Contracts\Setting\SettingsRepository;
-use MshkQ\Wechat\AppCache;
+use Discuz\Contracts\Setting\SettingsRepository;
+use Discuz\Wechat\LumenCache;
 
 class MiniProgramService
 {
@@ -64,7 +64,11 @@ class MiniProgramService
             return null;
         }
         $miniprogram = $this->easyWechatFactory::miniProgram($this->config);
-        $miniprogram->rebind('cache',  app(AppCache::class));
+        if (method_exists($miniprogram, 'rebind')) {
+            $miniprogram->rebind('cache', app(LumenCache::class));
+        } else {
+            $miniprogram['cache'] = app(LumenCache::class);
+        }
         return $miniprogram;
     }
 }

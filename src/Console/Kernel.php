@@ -16,18 +16,18 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Console;
+namespace Discuz\Console;
 
 use App\Common\CacheKey;
-use MshkQ\Base\DzqCache;
-use MshkQ\Base\DzqKernel;
-use MshkQ\Common\Utils;
-use MshkQ\Console\Event\Configuring;
-use MshkQ\Foundation\SiteApp;
+use Discuz\Base\DzqCache;
+use Discuz\Base\DzqKernel;
+use Discuz\Common\Utils;
+use Discuz\Console\Event\Configuring;
+use Discuz\Foundation\SiteApp;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use MshkQ\Foundation\Application;
+use Discuz\Foundation\Application;
 use Illuminate\Contracts\Console\Kernel as KernelContract;
 use ReflectionClass;
 use Symfony\Component\Console\Application as ConsoleApplication;
@@ -133,20 +133,23 @@ EOF;
     }
 
     /**
+     * Bootstrap the application for console commands.
+     */
+    public function bootstrap()
+    {
+        $this->siteBoot();
+    }
+
+    /**
      * Handle an incoming console command.
      *
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface|null $output
      * @return int
      */
-    public function bootstrap()
-    {
-        // already bootstrapped via siteBoot
-    }
-
     public function handle($input, $output = null)
     {
-        // delegated to call()
+        // TODO: Implement handle() method.
     }
 
     public function call($command, array $parameters = [], $outputBuffer = null)

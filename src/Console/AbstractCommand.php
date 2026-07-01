@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Console;
+namespace Discuz\Console;
 
 use Illuminate\Console\Parser;
 use Symfony\Component\Console\Command\Command;
@@ -67,7 +67,7 @@ abstract class AbstractCommand extends Command
      * AbstractCommand constructor.
      * @param string|null $name
      */
-    public function __construct()
+    public function __construct(?string $name = null)
     {
         [$name, $arguments, $options] = Parser::parse($this->signature);
 
@@ -108,7 +108,7 @@ abstract class AbstractCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->input = $input;
         $this->output = $output;

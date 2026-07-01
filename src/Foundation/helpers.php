@@ -89,6 +89,19 @@ if (! function_exists('resource_path')) {
     }
 }
 
+if (! function_exists('database_path')) {
+    /**
+     * Get the path to the database folder.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    function database_path($path = '')
+    {
+        return app()->databasePath($path);
+    }
+}
+
 if (! function_exists('public_path')) {
     /**
      * Get the path to the public folder.

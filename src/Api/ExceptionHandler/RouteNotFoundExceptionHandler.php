@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\ExceptionHandler;
+namespace Discuz\Api\ExceptionHandler;
 
-use MshkQ\Http\Exception\RouteNotFoundException;
+use Discuz\Http\Exception\RouteNotFoundException;
 use Exception;
 use MshkQ\JsonApi\Exception\Handler\ExceptionHandlerInterface;
 use MshkQ\JsonApi\Exception\Handler\ResponseBag;

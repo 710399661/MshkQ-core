@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Qcloud\Services;
+namespace Discuz\Qcloud\Services;
 
 use GuzzleHttp\Client;
 
-class MshkQCloudService
+class DiscuzCloudService
 {
     protected $config;
 
@@ -41,60 +41,9 @@ class MshkQCloudService
         return $this->getHttpClient()->request('GET', 'cloud/version');
     }
 
-    /**
-     * @param string $body
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function report($body = '')
-    {
-        return $this->getHttpClient()->requestAsync('POST', 'cloud/register', [
-            'json' => $body
-        ]);
-    }
-
-    public function statistics($body = '')
-    {
-        return $this->getHttpClient()->requestAsync('POST', 'cloud/statistics', [
-            'json' => $body
-        ]);
-    }
-    /**
-     * @param string $body
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function qcloudReport($body = '')
-    {
-        return $this->getHttpClient()->requestAsync('POST', 'cloud/qcloud', [
-            'json' => $body
-        ]);
-    }
-
     protected function getHttpClient()
     {
         return $this->httpClient ?? $this->httpClient = new Client($this->config);
-    }
-
-    public function uinStatistics($body = '')
-    {
-        return $this->getHttpClient()->requestAsync('POST', 'cloud/uinStatistics', [
-            'json' => $body
-        ]);
-    }
-
-    public function qcloudDaily($body = '')
-    {
-        return $this->getHttpClient()->requestAsync('POST', 'cloud/qcloudDaily', [
-            'json' => $body
-        ]);
-    }
-
-    public function siteInfoDaily($body = '')
-    {
-        return $this->getHttpClient()->requestAsync('POST', 'cloud/siteInfoDaily', [
-            'json' => $body
-        ]);
     }
 
 }

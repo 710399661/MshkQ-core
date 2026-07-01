@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Wechat;
+namespace Discuz\Wechat;
 
-use MshkQ\Contracts\Qcloud\Factory;
-use MshkQ\Wechat\MiniProgram\MiniProgramService;
-use MshkQ\Wechat\Offiaccount\OffiaccountService;
+use Discuz\Contracts\Qcloud\Factory;
+use Discuz\Wechat\MiniProgram\MiniProgramService;
+use Discuz\Wechat\Offiaccount\OffiaccountService;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Manager;
 use InvalidArgumentException;
@@ -29,9 +29,9 @@ use EasyWeChat\Factory as EasyWechatFactory;
 class EasyWechatManage extends Manager implements Factory
 {
     /**
-     * @var EasyWechatFactory
+     * @var string EasyWeChat Factory 类名
      */
-    protected $easyWechatFactory;
+    protected $easyWechatFactoryClass = EasyWechatFactory::class;
 
     /**
      * @var mixed
@@ -41,29 +41,27 @@ class EasyWechatManage extends Manager implements Factory
     public function __construct(Container $container)
     {
         parent::__construct($container);
-
-        $this->easyWechatFactory = new EasyWechatFactory;
     }
 
     public function createOffiaccountDriver()
     {
-        return $this->buildService(OffiaccountService::class, $this->easyWechatFactory);
+        return $this->buildService(OffiaccountService::class, $this->easyWechatFactoryClass);
     }
 
     public function createMiniProgramDriver()
     {
-        return $this->buildService(MiniProgramService::class, $this->easyWechatFactory);
+        return $this->buildService(MiniProgramService::class, $this->easyWechatFactoryClass);
     }
 
     /**
      * @param $service
-     * @param $factory
+     * @param $factoryClass
      * @param array $data
      * @return mixed
      */
-    public function buildService($service, $factory, $data = [])
+    public function buildService($service, $factoryClass, $data = [])
     {
-        return new $service($factory, $data);
+        return new $service($factoryClass, $data);
     }
 
     /**

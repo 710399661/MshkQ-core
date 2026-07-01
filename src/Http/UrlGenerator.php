@@ -16,11 +16,13 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http;
+namespace Discuz\Http;
 
-use MshkQ\Foundation\Application;
+use DateTimeInterface;
+use Discuz\Foundation\Application;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContracts;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Psr\Http\Message\ServerRequestInterface;
 
 class UrlGenerator implements UrlGeneratorContracts
@@ -30,8 +32,6 @@ class UrlGenerator implements UrlGeneratorContracts
     protected $routes;
 
     protected $cachedScheme;
-
-    protected $rootNamespace;
 
     /**
      * @var ServerRequestInterface
@@ -131,6 +131,199 @@ class UrlGenerator implements UrlGeneratorContracts
     }
 
     /**
+     * Create a signed route URL for a named route.
+     *
+     * @param  string  $name
+     * @param  mixed  $parameters
+     * @param  \DateTimeInterface|\DateInterval|int|null  $expiration
+     * @param  bool  $absolute
+     * @return string
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function signedRoute($name, $parameters = [], $expiration = null, $absolute = true)
+    {
+        $this->ensureSignedRouteParametersAreNotReserved(
+            $parameters = Arr::wrap($parameters)
+        );
+
+        if ($expiration) {
+            $parameters['expires'] = $this->availableAt($expiration);
+        }
+
+        ksort($parameters);
+
+        $url = $this->route($name, $parameters, $absolute);
+
+        $url = $this->addQueryString($url, $parameters);
+
+        $signature = hash_hmac(
+            'sha256',
+            $url,
+            $this->getKey()
+        );
+
+        return $this->addQueryString($url, ['signature' => $signature]);
+    }
+
+    /**
+     * Add a query string to the given URL.
+     *
+     * @param  string  $url
+     * @param  array  $query
+     * @return string
+     */
+    protected function addQueryString($url, array $query)
+    {
+        if (empty($query)) {
+            return $url;
+        }
+
+        $question = str_contains($url, '?') ? '&' : '?';
+
+        return $url . $question . Arr::query($query);
+    }
+
+    /**
+     * Create a temporary signed route URL for a named route.
+     *
+     * @param  string  $name
+     * @param  \DateTimeInterface|\DateInterval|int  $expiration
+     * @param  array  $parameters
+     * @param  bool  $absolute
+     * @return string
+     */
+    public function temporarySignedRoute($name, $expiration, $parameters = [], $absolute = true)
+    {
+        return $this->signedRoute($name, $parameters, $expiration, $absolute);
+    }
+
+    /**
+     * Generate an absolute URL with the given query parameters.
+     *
+     * @param  string  $path
+     * @param  array  $query
+     * @param  mixed  $extra
+     * @param  bool|null  $secure
+     * @return string
+     */
+    public function query($path, $query = [], $extra = [], $secure = null)
+    {
+        $url = $this->to($path, $extra, $secure);
+
+        $query = array_merge(
+            $this->extractQueryString($url),
+            $query
+        );
+
+        $uri = trim($this->stripQueryString($url), '/');
+
+        if (! empty($query)) {
+            $uri .= '?' . Arr::query($query);
+        }
+
+        return $uri;
+    }
+
+    /**
+     * Ensure the given signed route parameters are not reserved.
+     *
+     * @param  mixed  $parameters
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function ensureSignedRouteParametersAreNotReserved($parameters)
+    {
+        if (array_key_exists('signature', $parameters)) {
+            throw new \InvalidArgumentException('"Signature" is a reserved parameter when generating signed routes.');
+        }
+
+        if (array_key_exists('expires', $parameters)) {
+            throw new \InvalidArgumentException('"Expires" is a reserved parameter when generating signed routes.');
+        }
+    }
+
+    /**
+     * Get the "available at" UNIX timestamp.
+     *
+     * @param  \DateTimeInterface|\DateInterval|int  $delay
+     * @return int
+     */
+    protected function availableAt($delay = 0)
+    {
+        $delay = $this->parseDateInterval($delay);
+
+        return $delay instanceof DateTimeInterface
+            ? $delay->getTimestamp()
+            : time() + $delay;
+    }
+
+    /**
+     * If the given value is an interval, convert it to a DateTime instance.
+     *
+     * @param  \DateTimeInterface|\DateInterval|int  $delay
+     * @return \DateTimeInterface|int
+     */
+    protected function parseDateInterval($delay)
+    {
+        if ($delay instanceof \DateInterval) {
+            $delay = \DateTime::createFromFormat('U', time())->add($delay);
+        }
+
+        return $delay;
+    }
+
+    /**
+     * Get the encryption key from the application config.
+     *
+     * @return string
+     */
+    protected function getKey()
+    {
+        $key = $this->app->make('config')->get('app.key');
+
+        if (Str::startsWith($key, 'base64:')) {
+            $key = base64_decode(Str::after($key, 'base64:'));
+        }
+
+        return $key;
+    }
+
+    /**
+     * Extract the query string from the given URL.
+     *
+     * @param  string  $url
+     * @return array
+     */
+    protected function extractQueryString($url)
+    {
+        $query = [];
+
+        if (str_contains($url, '?')) {
+            [$path, $queryString] = explode('?', $url, 2);
+            parse_str($queryString, $query);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Strip the query string from the given URL.
+     *
+     * @param  string  $url
+     * @return string
+     */
+    protected function stripQueryString($url)
+    {
+        if (str_contains($url, '?')) {
+            return explode('?', $url, 2)[0];
+        }
+
+        return $url;
+    }
+
+    /**
      * Set the root controller namespace.
      *
      * @param string $rootNamespace
@@ -138,12 +331,17 @@ class UrlGenerator implements UrlGeneratorContracts
      */
     public function setRootControllerNamespace($rootNamespace)
     {
-        $this->rootNamespace = $rootNamespace;
+        // TODO: Implement setRootControllerNamespace() method.
     }
 
+    /**
+     * Get the root controller namespace.
+     *
+     * @return string
+     */
     public function getRootControllerNamespace()
     {
-        return $this->rootNamespace ?? null;
+        return '';
     }
 
     protected function formatHost()

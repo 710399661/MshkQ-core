@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Wechat\Offiaccount;
+namespace Discuz\Wechat\Offiaccount;
 
-use MshkQ\Contracts\Setting\SettingsRepository;
-use MshkQ\Wechat\AppCache;
+use Discuz\Contracts\Setting\SettingsRepository;
+use Discuz\Wechat\LumenCache;
 use EasyWeChat\OfficialAccount\Application as OfficialAccountApplication;
 
 class OffiaccountService
@@ -61,8 +61,12 @@ class OffiaccountService
     {
         $this->config = array_merge($this->config, $params);
 
-        $offiaccount =  $this->easyWechatFactory::officialAccount($this->config);
-        $offiaccount->rebind('cache', app(AppCache::class));
+        $offiaccount = $this->easyWechatFactory::officialAccount($this->config);
+        if (method_exists($offiaccount, 'rebind')) {
+            $offiaccount->rebind('cache', app(LumenCache::class));
+        } else {
+            $offiaccount['cache'] = app(LumenCache::class);
+        }
         return $offiaccount;
     }
 }

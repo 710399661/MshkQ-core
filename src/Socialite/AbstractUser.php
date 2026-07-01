@@ -16,13 +16,12 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Socialite;
+namespace Discuz\Socialite;
 
-use MshkQ\Contracts\Socialite\User;
+use Discuz\Contracts\Socialite\User;
 
 use ArrayAccess;
 
-#[AllowDynamicProperties]
 abstract class AbstractUser implements ArrayAccess, User
 {
     /**
@@ -156,10 +155,10 @@ abstract class AbstractUser implements ArrayAccess, User
     /**
      * Determine if the given raw user attribute exists.
      *
-     * @param  string  $offset
+     * @param  mixed  $offset
      * @return bool
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return array_key_exists($offset, $this->user);
     }
@@ -167,10 +166,10 @@ abstract class AbstractUser implements ArrayAccess, User
     /**
      * Get the given key from the raw user.
      *
-     * @param  string  $offset
+     * @param  mixed  $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->user[$offset];
     }
@@ -178,11 +177,11 @@ abstract class AbstractUser implements ArrayAccess, User
     /**
      * Set the given attribute on the raw user array.
      *
-     * @param  string  $offset
+     * @param  mixed  $offset
      * @param  mixed  $value
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->user[$offset] = $value;
     }
@@ -190,10 +189,10 @@ abstract class AbstractUser implements ArrayAccess, User
     /**
      * Unset the given value from the raw user array.
      *
-     * @param  string  $offset
+     * @param  mixed  $offset
      * @return void
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->user[$offset]);
     }

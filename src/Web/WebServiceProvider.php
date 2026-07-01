@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Web;
+namespace Discuz\Web;
 
-use MshkQ\Http\Middleware\DispatchRoute;
-use MshkQ\Http\Middleware\HandleErrorsWithView;
-use MshkQ\Http\Middleware\HandleErrorsWithWhoops;
-use MshkQ\Http\RouteCollection;
+use Discuz\Http\Middleware\DispatchRoute;
+use Discuz\Http\Middleware\HandleErrorsWithView;
+use Discuz\Http\Middleware\HandleErrorsWithWhoops;
+use Discuz\Http\RouteCollection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\ViewServiceProvider;
 use Laminas\Stratigility\MiddlewarePipe;
@@ -30,7 +30,7 @@ class WebServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('MshkQ.web.middleware', function ($app) {
+        $this->app->singleton('discuz.web.middleware', function ($app) {
             $app->register(ViewServiceProvider::class);
             $pipe = new MiddlewarePipe();
             if ($app->config('debug')) {
@@ -42,7 +42,7 @@ class WebServiceProvider extends ServiceProvider
         });
 
         //保证路由中间件最后执行
-        $this->app->afterResolving('MshkQ.web.middleware', function (MiddlewarePipe $pipe) {
+        $this->app->afterResolving('discuz.web.middleware', function (MiddlewarePipe $pipe) {
             $pipe->pipe($this->app->make(DispatchRoute::class));
         });
     }

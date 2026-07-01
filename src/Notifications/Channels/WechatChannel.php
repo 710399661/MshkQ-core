@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Notifications\Channels;
+namespace Discuz\Notifications\Channels;
 
 use App\Models\NotificationTpl;
-use MshkQ\Contracts\Setting\SettingsRepository;
-use MshkQ\Notifications\Traits\NotificationTimingTrait;
-use MshkQ\Wechat\EasyWechatTrait;
+use Discuz\Contracts\Setting\SettingsRepository;
+use Discuz\Notifications\Traits\NotificationTimingTrait;
+use Discuz\Wechat\EasyWechatTrait;
 use EasyWeChat\Kernel\Exceptions\InvalidArgumentException;
 use EasyWeChat\Kernel\Exceptions\InvalidConfigException;
 use GuzzleHttp\Exception\GuzzleException;
@@ -29,7 +29,7 @@ use Illuminate\Support\Arr;
  * 微信通知 - 频道
  * Class WechatChannel
  *
- * @package MshkQ\Notifications\Channels
+ * @package Discuz\Notifications\Channels
  */
 class WechatChannel
 {
@@ -70,7 +70,7 @@ class WechatChannel
             // wechat post json
             $build = $notification->toWechat($notifiable, $sendResponse['noticeTimingId']);
 
-            if ($sendResponse['result'] === false) {
+            if ($sendResponse['result'] == false) {
                 return false;
             }
 

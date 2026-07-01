@@ -16,20 +16,20 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\Controller;
+namespace Discuz\Api\Controller;
 
 use App\Formatter\BaseFormatter;
-use MshkQ\Api\Events\WillSerializeData;
-use MshkQ\Http\MshkQResponseFactory;
+use Discuz\Api\Events\WillSerializeData;
+use Discuz\Http\DiscuzResponseFactory;
 use Illuminate\Contracts\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use MshkQ\JsonApi\Document;
-use MshkQ\JsonApi\ElementInterface;
+use MshkQ\JsonApi\Contracts\ElementInterface;
 use MshkQ\JsonApi\Exception\InvalidParameterException;
 use MshkQ\JsonApi\Parameters;
-use MshkQ\JsonApi\SerializerInterface;
+use MshkQ\JsonApi\Contracts\SerializerInterface;
 
 abstract class AbstractSerializeController implements RequestHandlerInterface
 {
@@ -119,7 +119,7 @@ abstract class AbstractSerializeController implements RequestHandlerInterface
 
         $document->setData($element);
 
-        return MshkQResponseFactory::JsonApiResponse($document);
+        return DiscuzResponseFactory::JsonApiResponse($document);
     }
 
     /**

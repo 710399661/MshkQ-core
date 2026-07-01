@@ -1,66 +1,82 @@
 {
     "name": "mshkq/core",
-    "description": "The MshkQ Framework",
+    "type": "library",
+    "description": "The Discuz Framework",
+    "keywords": ["discuz", "framework", "forum", "community"],
+    "license": "Apache-2.0",
     "require": {
-        "php": "^8.1",
+        "php": "^8.0 || ^8.1 || ^8.2 || ^8.3 || ^8.4 || ^8.5",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
-        "dragonmantank/cron-expression": "^3.0",
-        "guzzlehttp/guzzle": "^7.8",
-        "illuminate/bus": "^10.0",
-        "illuminate/cache": "^10.0",
-        "illuminate/config": "^10.0",
-        "illuminate/container": "^10.0",
-        "illuminate/database": "^10.0",
-        "illuminate/encryption": "^10.0",
-        "illuminate/events": "^10.0",
-        "illuminate/filesystem": "^10.0",
-        "illuminate/hashing": "^10.0",
-        "illuminate/http": "^10.0",
-        "illuminate/notifications": "^10.0",
-        "illuminate/queue": "^10.0",
-        "illuminate/redis": "^10.0",
-        "illuminate/session": "^10.0",
-        "illuminate/validation": "^10.0",
-        "illuminate/view": "^10.0",
-        "intervention/image": "^3.0",
-        "laminas/laminas-diactoros": "^2.25",
-        "laminas/laminas-httphandlerrunner": "^1.5",
-        "laminas/laminas-stratigility": "^3.8",
-        "lcobucci/jwt": "^4.3",
-        "league/flysystem": "^3.0",
-        "league/oauth2-server": "^8.3",
-        "monolog/monolog": "^3.0",
-        "nikic/fast-route": "^1.3.0",
-        "opis/closure": "^4.5",
-        "overtrue/easy-sms": "^3.0",
-        "phpoffice/phpspreadsheet": "^1.29",
+        "illuminate/cache": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/container": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/database": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/bus": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/events": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/config": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/view": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/session": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/filesystem": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/validation": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/encryption": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/hashing": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/redis": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/notifications": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/queue": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/http": "^10.0 || ^11.0 || ^12.0",
+        "intervention/image": "^2.7",
+        "psr/http-message": "^1.0 || ^2.0",
+        "monolog/monolog": "^3.0 || ^4.0",
+        "laminas/laminas-stratigility": "^3.3",
+        "laminas/laminas-httphandlerrunner": "^2.0",
+        "laminas/laminas-diactoros": "^3.0",
+        "nikic/fast-route": "^1.3",
+        "franzl/whoops-middleware": "^2.0",
+        "dflydev/fig-cookies": "^3.0 || ^4.0",
+        "guzzlehttp/guzzle": "^7.5",
         "qcloud/cos-sdk-v5": "^2.6",
-        "ramsey/uuid": "^4.7",
-        "symfony/console": "^6.0",
         "tencentcloud/tencentcloud-sdk-php": "^3.0",
-        "MshkQ/json-api": "^1.0.0"
+        "league/flysystem": "^3.0 || ^4.0",
+        "symfony/console": "^6.0 || ^7.0 || ^8.0",
+        "league/oauth2-server": "^8.5",
+        "lcobucci/jwt": "^4.3 || ^5.0",
+        "paragonie/sodium_compat": "^1.20",
+        "overtrue/easy-sms": "^2.4",
+        "dragonmantank/cron-expression": "^3.3",
+        "ramsey/uuid": "^4.7",
+        "phpoffice/phpspreadsheet": "^1.25 || ^2.0"
     },
- 
     "autoload": {
         "files": [
             "src/Foundation/helpers.php"
         ],
         "psr-4": {
-            "MshkQ\\": "src/"
+            "Discuz\\": "src/",
+            "MshkQ\\JsonApi\\": "src/JsonApi/"
         }
     },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "config": {
         "sort-packages": true,
-        "allow-plugins": {
-            "*": true
-        },
-        "platform-check": false,
-        "policy": {
-            "advisories": {
-                "block": false
-            }
-        }
+        "optimize-autoloader": true,
+        "preferred-install": "dist"
+    },
+    "archive": {
+        "exclude": [
+            "/.git",
+            "/.github",
+            "/tests",
+            "/docs",
+            "/examples",
+            "/vendor",
+            "composer.lock",
+            "phpunit.xml",
+            ".phpunit.result.cache",
+            ".gitignore",
+            ".editorconfig",
+            "*.md"
+        ]
     }
 }

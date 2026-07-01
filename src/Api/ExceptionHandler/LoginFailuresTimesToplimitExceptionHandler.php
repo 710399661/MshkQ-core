@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Api\ExceptionHandler;
+namespace Discuz\Api\ExceptionHandler;
 
-use MshkQ\Auth\Exception\LoginFailuresTimesToplimitException;
+use Discuz\Auth\Exception\LoginFailuresTimesToplimitException;
 use Exception;
 use MshkQ\JsonApi\Exception\Handler\ExceptionHandlerInterface;
 use MshkQ\JsonApi\Exception\Handler\ResponseBag;

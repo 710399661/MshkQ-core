@@ -16,11 +16,10 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http;
+namespace Discuz\Http;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContracts;
-use Psr\Http\Message\ServerRequestInterface;
 
 class HttpServiceProvider extends ServiceProvider
 {
@@ -37,15 +36,5 @@ class HttpServiceProvider extends ServiceProvider
         $this->app->singleton(UrlGeneratorContracts::class, function ($app) {
             return new UrlGenerator($app, $app->make(RouteCollection::class));
         });
-    }
-
-    public function boot()
-    {
-        // 确保 ServerRequestInterface 已绑定
-        if (!$this->app->bound(ServerRequestInterface::class)) {
-            $request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals();
-            $this->app->instance('request', $request);
-            $this->app->alias('request', ServerRequestInterface::class);
-        }
     }
 }

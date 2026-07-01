@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Foundation;
+namespace Discuz\Foundation;
 
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Container\Container as ContainerContract;
@@ -534,7 +534,7 @@ class Application extends Container implements ContainerContract
         foreach ([
                      'app'                  => [self::class, \Illuminate\Contracts\Container\Container::class, \Illuminate\Contracts\Foundation\Application::class, \Psr\Container\ContainerInterface::class],
                      'blade.compiler'       => [\Illuminate\View\Compilers\BladeCompiler::class],
-                     'cache'                => [\MshkQ\Cache\CacheManager::class, \Illuminate\Contracts\Cache\Factory::class],
+                     'cache'                => [\Discuz\Cache\CacheManager::class, \Illuminate\Contracts\Cache\Factory::class],
                      'cache.store'          => [\Illuminate\Cache\Repository::class, \Illuminate\Contracts\Cache\Repository::class],
                      'config'               => [\Illuminate\Config\Repository::class, \Illuminate\Contracts\Config\Repository::class],
 //                     'cookie'               => [\Illuminate\Cookie\CookieJar::class, \Illuminate\Contracts\Cookie\Factory::class, \Illuminate\Contracts\Cookie\QueueingFactory::class],
@@ -592,7 +592,7 @@ class Application extends Container implements ContainerContract
      */
     public function config($key, $default = null)
     {
-        return Arr::get($this->make('MshkQ.config'), $key, $default);
+        return Arr::get($this->make('discuz.config'), $key, $default);
     }
 
     /**
@@ -618,7 +618,7 @@ class Application extends Container implements ContainerContract
             }
         }
 
-        throw new \RuntimeException('Unable to detect application namespace.');
+        throw new RuntimeException('Unable to detect application namespace.');
     }
 
     public function environment()
@@ -634,26 +634,6 @@ class Application extends Container implements ContainerContract
     public function getLocale()
     {
         return $this->config('locale');
-    }
-
-    public function getFallbackLocale()
-    {
-        return $this->config('fallback_locale', 'en');
-    }
-
-    public function getEnvironment()
-    {
-        return $this->config('debug', 'production') ? 'local' : 'production';
-    }
-
-    public function terminating($callback)
-    {
-        $this->terminatingCallbacks[] = $callback;
-    }
-
-    public function flushHandlers()
-    {
-        $this->terminatingCallbacks = [];
     }
 
     public function registerConfiguredProviders()
@@ -672,5 +652,105 @@ class Application extends Container implements ContainerContract
     public function isInstall()
     {
         return file_exists($this->storagePath().'/install.lock');
+    }
+
+    /**
+     * 获取回退语言区域
+     */
+    public function getFallbackLocale()
+    {
+        return $this->config('fallback_locale', 'en');
+    }
+
+    /**
+     * 设置当前语言区域
+     */
+    public function setLocale($locale)
+    {
+        $this->instance('locale', $locale);
+    }
+
+    /**
+     * 判断是否在控制台环境运行
+     */
+    public function runningInConsole()
+    {
+        return php_sapi_name() === 'cli' || php_sapi_name() === 'phpdbg';
+    }
+
+    /**
+     * 判断是否在运行单元测试
+     */
+    public function runningUnitTests()
+    {
+        return $this['env'] === 'testing';
+    }
+
+    /**
+     * 判断是否启用调试模式
+     */
+    public function hasDebugModeEnabled()
+    {
+        return (bool) $this->config('debug', false);
+    }
+
+    /**
+     * 判断应用是否已完成引导
+     */
+    public function hasBeenBootstrapped()
+    {
+        return $this->hasBeenBootstrapped;
+    }
+
+    /**
+     * 判断是否跳过中间件
+     */
+    public function shouldSkipMiddleware()
+    {
+        return false;
+    }
+
+    /**
+     * 注册终止回调
+     */
+    public function terminating($callback)
+    {
+        $this->terminatingCallbacks[] = $callback;
+    }
+
+    /**
+     * 终止应用
+     */
+    public function terminate()
+    {
+        foreach ($this->terminatingCallbacks as $callback) {
+            call_user_func($callback, $this);
+        }
+    }
+
+    /**
+     * 使用给定引导器数组引导应用
+     */
+    public function bootstrapWith(array $bootstrappers)
+    {
+        foreach ($bootstrappers as $bootstrapper) {
+            (new $bootstrapper)->bootstrap($this);
+        }
+    }
+
+    /**
+     * 获取 bootstrap 目录路径
+     */
+    public function bootstrapPath($path = '')
+    {
+        return $this->basePath('bootstrap'.($path ? DIRECTORY_SEPARATOR.$path : $path));
+    }
+
+    /**
+     * 获取维护模式管理器
+     */
+    public function maintenanceMode()
+    {
+        return null;
     }
 }

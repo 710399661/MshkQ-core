@@ -1,7 +1,7 @@
 <?php
-namespace MshkQ\Foundation;
+namespace Discuz\Foundation;
 
-use MshkQ\Foundation\SqlProfileListener;
+use Discuz\Foundation\SqlProfileListener;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Events\QueryExecuted;
 

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Qcloud;
+namespace Discuz\Qcloud;
 
 trait QcloudTrait
 {
@@ -49,22 +49,7 @@ trait QcloudTrait
 
     public function checkVersion($params = [])
     {
-        return $this->getQcloud()->service('MshkQcloud')->checkVersion($params);
-    }
-
-    public function qcloudReport($params = [])
-    {
-        return $this->getQcloud()->service('MshkQcloud')->qcloudReport($params);
-    }
-
-    public function report($params = [])
-    {
-        return $this->getQcloud()->service('MshkQcloud')->report($params);
-    }
-
-    public function statistics($params = [])
-    {
-        return $this->getQcloud()->service('MshkQcloud')->statistics($params);
+        return $this->getQcloud()->service('discuzcloud')->checkVersion($params);
     }
 
     public function MsUserInfo()
@@ -75,21 +60,6 @@ trait QcloudTrait
     private function getQcloud()
     {
         return $this->qcloud ?? $this->qcloud = app('qcloud');
-    }
-
-    public function uinStatistics($params = [])
-    {
-        return $this->getQcloud()->service('MshkQcloud')->uinStatistics($params);
-    }
-
-    public function qcloudDaily($params = [])
-    {
-        return $this->getQcloud()->service('MshkQcloud')->qcloudDaily($params);
-    }
-
-    public function siteInfoDaily($params = [])
-    {
-        return $this->getQcloud()->service('MshkQcloud')->siteInfoDaily($params);
     }
 
     /*

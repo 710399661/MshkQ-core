@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Cache;
+namespace Discuz\Cache;
 
 use Illuminate\Cache\FileStore;
 use Illuminate\Cache\RedisStore;
@@ -123,11 +123,15 @@ class CacheManager extends Manager implements FactoryContracts
      */
     public function repository(Store $store)
     {
-        $dispatcher = $this->container->bound(DispatcherContract::class)
-            ? $this->container[DispatcherContract::class]
-            : null;
+        $repository = new Repository($store);
 
-        return new Repository($store, $dispatcher);
+        if ($this->container->bound(DispatcherContract::class)) {
+            $repository->setEventDispatcher(
+                $this->container[DispatcherContract::class]
+            );
+        }
+
+        return $repository;
     }
 
     /**

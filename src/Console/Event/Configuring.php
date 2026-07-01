@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Console\Event;
+namespace Discuz\Console\Event;
 
-use MshkQ\Foundation\Application;
+use Discuz\Foundation\Application;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Application as ConsoleApplication;
 

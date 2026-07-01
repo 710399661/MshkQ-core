@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Http\Middleware;
+namespace Discuz\Http\Middleware;
 
 use App\Common\CacheKey;
 use App\Common\ResponseCode;
 use App\Models\User;
 use App\Passport\Repositories\AccessTokenRepository;
-use MshkQ\Auth\Guest;
-use MshkQ\Common\Utils;
+use Discuz\Auth\Guest;
+use Discuz\Common\Utils;
 use Illuminate\Support\Arr;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\ResourceServer;
@@ -37,7 +37,7 @@ class AuthenticateWithHeader implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        [$headerLine, $request] = $this->getHeaderLine($request);
+        list($headerLine, $request) = $this->getHeaderLine($request);
         if ($headerLine) {
             $accessTokenRepository = new AccessTokenRepository();
             $publickey = new CryptKey(storage_path('cert/public.key'), '', false);
@@ -118,17 +118,14 @@ class AuthenticateWithHeader implements MiddlewareInterface
         } else {
             $key = md5($userId . $api . $httpMethod);
         }
-        if(!is_array($routeInfo)){
-            $routeInfo = [];
-        }
         if($httpMethod == 'GET'){
-            $times = $routeInfo['times'] ?? 30;
-            $interval = $routeInfo['interval'] ?? 30;
+            $times = $routeInfo['times'] ?: 30;
+            $interval = $routeInfo['interval'] ?: 30;
         }else{
-            $times = $routeInfo['times'] ?? 30;
-            $interval = $routeInfo['interval'] ?? 60;
+            $times = $routeInfo['times'] ?: 30;
+            $interval = $routeInfo['interval'] ?: 60;
         }
-        $delay = $routeInfo['delay'] ?? 20;//默认禁用20秒
+        $delay = $routeInfo['delay'] ?: 20;//默认禁用20秒
         $cache = app('cache');
         $count = $cache->get($key);
         if (empty($count)) {
@@ -180,7 +177,7 @@ class AuthenticateWithHeader implements MiddlewareInterface
             if (!preg_match($data['regex'], $uri, $matches)) {
                 continue;
             }
-            [$handler, $varNames] = $data['routeMap'][count($matches)];
+            list($handler, $varNames) = $data['routeMap'][count($matches)];
             $vars = [];
             $i = 0;
             foreach ($varNames as $varName) {

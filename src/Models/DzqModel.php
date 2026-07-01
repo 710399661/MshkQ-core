@@ -15,13 +15,14 @@
  * limitations under the License.
  */
 
-namespace MshkQ\Models;
+namespace Discuz\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class DzqModel extends Model
 {
-    private static $instance;
+    /** @var array<string, static> 单例实例数组 */
+    private static array $instance = [];
     protected function __clone(){}
 
     public static function instance() {
